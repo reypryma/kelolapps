@@ -1,5 +1,10 @@
-const String LOCAL_IMAGES_URL = 'assets/images/public_image';
-const String appIcon = '${LOCAL_IMAGES_URL}/ic_home.png';
+
+//Image Location
+const String PUBLIC_IMAGES_URL = 'assets/public_image';
+const String KELOLAPPS_IMAGES_URL = 'assets/kelolapps';
+const String STORE_IMAGES_URL = 'assets/store_image';
+
+const String appIcon = '${PUBLIC_IMAGES_URL}/ic_home.png';
 
 const String APP_NAME = 'Kelolaku';
 

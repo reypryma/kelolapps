@@ -19,7 +19,7 @@ Map<String, String> get headers => {
 
 //======================= Language Translate  ==================================
 
-String? getTranslated(BuildContext context, String key) {
-  return DemoLocalization.of(context)!.translate(key);
-}
+// String? getTranslated(BuildContext context, String key) {
+//   return DemoLocalization.of(context)!.translate(key);
+// }
 

@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 Color hexStringToHexInt(String hex) {
   hex = hex.replaceFirst('#', '');
-  hex = hex.length == 6 ? 'ff' + hex : hex;
+  hex = hex.length == 6 ? 'ff$hex' : hex;
   int val = int.parse(hex, radix: 16);
   return Color(val);
 }

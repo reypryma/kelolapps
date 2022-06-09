@@ -3,9 +3,13 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:kelolapps/config/image.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
 import 'package:kelolapps/config/kelolaku/constant.dart';
 import 'package:kelolapps/main.dart';
+import 'package:kelolapps/route/route_helper.dart';
+import 'package:kelolapps/view/screens/LoginScreens.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
@@ -30,9 +34,10 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => OnBoardingPage()));
 
         // if you use this splash screen on the very first time when you open the page, use below code
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => MyApp()),
-            (Route<dynamic> route) => false);
+        // Navigator.of(context).pushAndRemoveUntil(
+        //     MaterialPageRoute(builder: (context) => LoginScreen()),
+        //     (Route<dynamic> route) => false);
+        Get.offNamed(RouteHelper.login);
       }
     });
   }
@@ -76,9 +81,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         body: Container(
             color: KelolakuGlobalColor.bgFeedAlt,
             alignment: Alignment.center,
-            child: CachedNetworkImage(
-              imageUrl:
-                  "https://smartkit.wrteam.in/smartkit/foodmaster/splash_logo.png",
+            child: Image.asset(
+              KelolaImage.kelolaLogoShort,
               width: MediaQuery.of(context).size.width / 2,
             )
             // ExplodeViewMain(imagePath: 'https://smartkit.wrteam.in/smartkit/foodmaster/splash_logo.png', imagePosFromLeft: MediaQuery.of(context).size.width / 2, imagePosFromTop: MediaQuery.of(context).size.height / 2),

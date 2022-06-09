@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:kelolapps/config/kelolaku/color_style.dart';
 
 import 'dart:ui';
 
@@ -72,4 +73,66 @@ String convertDate(date) {
     print(e);
     return '';
   }
+}
+
+Widget formField(context, hint,
+    {isEnabled = true,
+      isDummy = false,
+      controller,
+      isPasswordVisible = false,
+      isPassword = false,
+      keyboardType = TextInputType.text,
+      FormFieldValidator<String>? validator,
+      onSaved,
+      textInputAction = TextInputAction.next,
+      FocusNode? focusNode,
+      FocusNode? nextFocus,
+      IconData? suffixIcon,
+      IconData? prefixIcon,
+      maxLine = 1,
+      suffixIconSelector}) {
+  return TextFormField(
+    controller: controller,
+    obscureText: isPassword ? isPasswordVisible : false,
+    cursorColor: KelolakuGlobalColor.colorPrimaryExtra,
+    maxLines: maxLine,
+    keyboardType: keyboardType,
+    validator: validator,
+    onSaved: onSaved,
+    textInputAction: textInputAction,
+    focusNode: focusNode,
+    onFieldSubmitted: (arg) {
+      if (nextFocus != null) {
+        FocusScope.of(context).requestFocus(nextFocus);
+      }
+    },
+    decoration: InputDecoration(
+      focusedBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(spacing_standard), borderSide: BorderSide(color: Colors.transparent)),
+      enabledBorder: UnderlineInputBorder(borderRadius: BorderRadius.circular(spacing_standard), borderSide: BorderSide(color: Colors.transparent)),
+      filled: true,
+      fillColor: KelolakuGlobalColor.grayText,
+      hintText: hint,
+      hintStyle: TextStyle(fontSize: textSizeMedium, color: KelolakuGlobalColor.ocean40),
+      prefixIcon: Icon(
+        prefixIcon,
+        color: KelolakuGlobalColor.dark30,
+        size: 20,
+      ),
+      suffixIcon: isPassword
+          ? GestureDetector(
+        onTap: suffixIconSelector,
+        child: Icon(
+          suffixIcon,
+          color: KelolakuGlobalColor.dark30,
+          size: 20,
+        ),
+      )
+          : Icon(
+        suffixIcon,
+        color: KelolakuGlobalColor.dark30,
+        size: 20,
+      ),
+    ),
+    style: TextStyle(fontSize: textSizeNormal, color: isDummy ? Colors.transparent : KelolakuGlobalColor.dark20, fontFamily: fontRegular),
+  );
 }

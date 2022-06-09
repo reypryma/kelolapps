@@ -2,12 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
 import 'package:kelolapps/theme/light_theme.dart';
 
-import 'helper/route_helper.dart';
+import 'route/route_helper.dart';
 
 void main() {
   // this function makes application always run in portrait mode
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       scrollBehavior: MyCustomScrollBehavior(),
+      navigatorKey: Get.key,
       title: 'Kelolaku Demo',
       debugShowCheckedModeBanner: false,
       // theme: ThemeData(

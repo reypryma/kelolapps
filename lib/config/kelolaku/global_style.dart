@@ -1,4 +1,6 @@
 //region Global variables - This variables can be changed.
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
