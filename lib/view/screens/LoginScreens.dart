@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
 import 'package:kelolapps/config/kelolaku/text_style.dart';
+import 'package:kelolapps/utils/AppWidget.dart';
 import 'package:kelolapps/utils/app_strings.dart';
 import 'package:kelolapps/utils/dimensions.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -12,9 +13,22 @@ class LoginScreen extends StatefulWidget {
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
+
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  FocusNode phoneNumberFocus = FocusNode();
+  FocusNode passwordFocus = FocusNode();
+  FocusNode nameFocus = FocusNode();
+  String? phone;
+  String? name;
+  String? password;
+  bool autoValidate = false;
+  bool passwordVisible = false;
+  bool isLoading = false;
+  bool isRemember = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,15 +65,50 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 3
               ),
-              Container(
-                  alignment:  Alignment.centerLeft,
-                  margin: const EdgeInsets.only(top: Dimensions.MARGIN_SIZE_SMALL),
-                  child: Text(AppString.userName, style: heading4.copyWith(color: KelolakuGlobalColor.dark60), textAlign: TextAlign.left,)).paddingLeft(Dimensions.MARGIN_SIZE_GRID_8),
+              Column(
+                // children: [
+                //   Container(
+                //       alignment:  Alignment.centerLeft,
+                //       margin: const EdgeInsets.only(top: Dimensions.MARGIN_SIZE_SMALL),
+                //       child: Text(AppString.userName, style: heading4.copyWith(color: KelolakuGlobalColor.dark60), textAlign: TextAlign.left,)).paddingLeft(Dimensions.MARGIN_SIZE_GRID_8),
+                //
+                // ],
+                children: [
+                  formField(context, "Your Name", prefixIcon: Icons.person_outline, focusNode: nameFocus, textInputAction: TextInputAction.next, nextFocus: phoneNumberFocus,
+                      onSaved: (String? value) {
+                        setState(() {
+                          name = value;
+                        });
+                      }).paddingBottom(8),
+                  formField(context, "Phone Number", prefixIcon: Icons.phone_iphone, focusNode: phoneNumberFocus, textInputAction: TextInputAction.next, nextFocus: passwordFocus,
+                      onSaved: (String? value) {
+                        setState(() {
+                          phone = value;
+                        });
+                      }).paddingBottom(8),
+                  formField(context, "Password",
+                      prefixIcon: Icons.lock_outline,
+                      isPassword: true,
+                      isPasswordVisible: passwordVisible,
+                      focusNode: passwordFocus,
+                      onSaved: (String? value) {
+                        password = value;
+                      },
+                      textInputAction: TextInputAction.done,
+                      suffixIconSelector: () {
+                        setState(() {
+                          passwordVisible = !passwordVisible;
+                        });
+                      },
+                      suffixIcon: passwordVisible ? Icons.visibility : Icons.visibility_off),
+                ],
+              ),
+
               Expanded(
                 child: Column(
                   children: [
                     Expanded(child: Container(),
-                      
+
                     ),
                     Container(
                       color: tomato,
