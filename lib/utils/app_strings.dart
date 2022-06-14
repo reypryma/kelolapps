@@ -9,4 +9,6 @@ class AppString{
   static const lblLogin = "Masuk";
   static const lblNotHaveAccount = "Belum Punya Akun?";
   static const lblSignUp = "Daftar";
+  static const lblAlreadyHaveAccount = "Sudah Punya Akun?";
+  static const lblRegisterKelolaku = "Daftar Kelolaku";
 }

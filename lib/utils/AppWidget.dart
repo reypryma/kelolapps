@@ -133,6 +133,6 @@ Widget formField(context, hint,
         size: 20,
       ),
     ),
-    style: TextStyle(fontSize: textSizeNormal, color: isDummy ? Colors.transparent : KelolakuGlobalColor.dark20, fontFamily: fontRegular),
+    style: TextStyle(fontSize: textSizeNormal, color: isDummy ? Colors.transparent : KelolakuGlobalColor.purpleBlack, fontFamily: fontRegular),
   );
 }
