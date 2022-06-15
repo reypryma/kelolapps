@@ -11,4 +11,9 @@ class AppString{
   static const lblSignUp = "Daftar";
   static const lblAlreadyHaveAccount = "Sudah Punya Akun?";
   static const lblRegisterKelolaku = "Daftar Kelolaku";
+
+  static const hdWelcome = "Selamat Bergabung";
+  static const descWelcome = "Kembangkan Tokomu lebih cepat dan mudah, lihat perkembangan tokomu dan pahami pembeli, semua dalam satu aplikasi!";
+  static const createStoreNow = "Mulai Buat Toko Sekarang";
+
 }

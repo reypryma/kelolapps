@@ -128,16 +128,16 @@ const TextStyle ff = TextStyle(
     fontWeight: FontWeight.w100,
     fontStyle: FontStyle.italic);
 
-const TextStyle large48 = TextStyle(
-  fontSize: 48,
+TextStyle large48 = primaryTextStyle(
+  size: 48,
   fontFamily: 'Inter',
-  fontWeight: FontWeight.w700,
+  weight: FontWeight.w700,
 );
 
-const TextStyle large36 = TextStyle(
-  fontSize: 36,
+TextStyle large36 = primaryTextStyle(
+  size: 36,
   fontFamily: 'Inter',
-  fontWeight: FontWeight.w700,
+  weight: FontWeight.w700,
 );
 
 const TextStyle large28 = TextStyle(
@@ -146,22 +146,22 @@ const TextStyle large28 = TextStyle(
   fontWeight: FontWeight.w700,
 );
 
-const TextStyle heading1 = TextStyle(
-  fontSize: 24,
+TextStyle heading1 = primaryTextStyle(
+  size: 24,
   fontFamily: 'Inter',
-  fontWeight: FontWeight.w700,
+  weight: FontWeight.w700,
 );
 
-const TextStyle heading2 = TextStyle(
-  fontSize: 20,
+TextStyle heading2 = primaryTextStyle(
+  size: 20,
   fontFamily: 'Inter',
-  fontWeight: FontWeight.w700,
+  weight: FontWeight.w700,
 );
 
-const TextStyle heading3 = TextStyle(
-  fontSize: 16,
+TextStyle heading3 = primaryTextStyle(
+  size: 16,
   fontFamily: 'Inter',
-  fontWeight: FontWeight.w700,
+  weight: FontWeight.w700,
 );
 
 const TextStyle heading4 = TextStyle(

@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: MediaQuery.of(context).size.height * 0.145320197,
                   ),
                 const SizedBox(
-                  height: Dimensions.MARGIN_SIZE_SMALL,
+                  height: Dimensions.MARGIN_SIZE_GRID_6,
                 ),
                 Container(
                   padding: const EdgeInsets.only(left: Dimensions.MARGIN_SIZE_GRID_8, right: Dimensions.MARGIN_SIZE_GRID_8),
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                       Container(
                           alignment:  Alignment.centerLeft,
-                          margin: const EdgeInsets.only(top: Dimensions.MARGIN_SIZE_SMALL),
+                          margin: const EdgeInsets.only(top: Dimensions.MARGIN_SIZE_GRID_6),
                           child: Text(AppString.userName, style: heading4.copyWith(color: KelolakuGlobalColor.grayText), textAlign: TextAlign.left,)).paddingSymmetric(vertical: 10),
                     formField(context, "Your Name", prefixIcon: Icons.person_outline, focusNode: nameFocus, textInputAction: TextInputAction.next, nextFocus: phoneNumberFocus,
                         onSaved: (String? value) {
@@ -139,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           shapeBorder:
                               RoundedRectangleBorder(borderRadius: radius(defaultRadius)),
                           padding: const EdgeInsets.all(16),
-                        ).paddingBottom(Dimensions.PADDING_SIZE_EXTRA_SMALL)
+                        ).paddingBottom(Dimensions.VERTICAL_SIZE_8)
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kelolapps/view/screens/fragments/store_register/signup_store_info_fragment.dart';
 import 'package:kelolapps/view/screens/fragments/store_register/signup_store_name_fragment.dart';
 import 'package:kelolapps/view/screens/fragments/store_register/store_signup_date_fragment.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../config/kelolaku/color_style.dart';
 import '../../config/kelolaku/text_style.dart';
@@ -11,8 +13,6 @@ import '../../utils/app_strings.dart';
 import '../../utils/dimensions.dart';
 
 class StoreRegisterWalkthroughScreen extends StatefulWidget {
-  const StoreRegisterWalkthroughScreen({Key? key}) : super(key: key);
-
   @override
   _StoreRegisterWalkthroughScreenState createState() =>
       _StoreRegisterWalkthroughScreenState();
@@ -20,13 +20,19 @@ class StoreRegisterWalkthroughScreen extends StatefulWidget {
 
 class _StoreRegisterWalkthroughScreenState
     extends State<StoreRegisterWalkthroughScreen> with AfterLayoutMixin<StoreRegisterWalkthroughScreen>{
-  PageController pageController = PageController();
+  final PageController pageController = PageController();
   double? currentPage = 0;
+  // int currentPage = 0;
   List<Widget> pages = [];
 
 
   @override
   void initState() {
+    super.initState();
+    init();
+  }
+
+  Future<void> init() async {
     pageController.addListener(
           () {
         setState(() {
@@ -36,6 +42,15 @@ class _StoreRegisterWalkthroughScreenState
     );
   }
 
+  @override
+  void afterFirstLayout(BuildContext context) {
+    pages = [
+      StoreSignupNameFragment(),
+      StoreSignupInfoFragment(),
+      StoreSignupDateFragment(),
+    ];
+    setState(() {});
+  }
 
   @override
   void setState(VoidCallback fn) {
@@ -45,66 +60,65 @@ class _StoreRegisterWalkthroughScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KelolakuGlobalColor.lightSmoke,
+      // backgroundColor: KelolakuGlobalColor.lightSmoke,
       body: SafeArea(
         child: Stack(
           children: [
+            PageView(controller: pageController, children: pages.map((e) => e).toList()),
             Positioned(
-              bottom: 0,
+              bottom: 50,
               left: 0,
               right: 0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  // Container(
-                  //     margin: const EdgeInsets.symmetric(
-                  //         horizontal: Dimensions.MARGIN_SIZE_GRID_8),
-                  //     child: AppButton(
-                  //       width: MediaQuery.of(context).size.width,
-                  //       height: 51,
-                  //       color: KelolakuGlobalColor.colorPrimaryLogo,
-                  //       //context.cardColor,
-                  //       text: AppString.lblSignUp,
-                  //       textColor: Colors.white,
-                  //       onTap: () {
-                  //         // ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  //         //
-                  //         // snackBar(context,
-                  //         //     title: "Login Successful",
-                  //         //     backgroundColor: KelolakuGlobalColor.colorPrimaryLogo);
-                  //       },
-                  //       shapeBorder: RoundedRectangleBorder(
-                  //           borderRadius: radius(defaultRadius)),
-                  //       padding: const EdgeInsets.all(16),
-                  //     )),
-                  DotIndicator(
-                    indicatorColor: KelolakuGlobalColor.colorPrimaryLogo,
-                    pageController: pageController,
-                    pages: pages,
-                    unselectedIndicatorColor: KelolakuGlobalColor.dark60,
-                    onPageChanged: (index) {
-                      setState(
-                        () {
-                          currentPage = index as double?;
-                        },
-                      );
-                    },
-                  ).paddingBottom(Dimensions.BOTTOM_HEIGHT_GRID),
-                ],
+              child: Align(
+                alignment: Alignment.center,
+                child:
+                // SmoothPageIndicator(
+                //   controller: pageController,
+                //   count: 2,
+                //   axisDirection: Axis.horizontal,
+                //   effect: ExpandingDotsEffect(
+                //     dotColor: Color(0xff9e9e9e),
+                //     activeDotColor: KelolakuGlobalColor.colorPrimaryLogo,
+                //     dotHeight: 3,
+                //     dotWidth: 16,
+                //     radius: 16,
+                //     spacing: 8,
+                //     expansionFactor: 3,
+                //   ),
+                // ),
+                // DotIndicator(
+                //   indicatorColor: KelolakuGlobalColor.colorPrimaryLogo,
+                //   pages: pages, pageController: pageController,
+                //   unselectedIndicatorColor: grey,
+                //   onPageChanged: (index) {
+                //     setState(
+                //           () {
+                //         currentPage = index as double?;
+                //       },
+                //     );
+                //   },
+                // )
+                SmoothPageIndicator(
+                  controller: pageController,
+                  count: 3,
+                  axisDirection: Axis.horizontal,
+                  effect: const ExpandingDotsEffect(
+                    dotColor: Color(0xff9e9e9e),
+                    activeDotColor: KelolakuGlobalColor.colorPrimaryLogo,
+                    dotHeight: 3,
+                    dotWidth: 16,
+                    radius: 16,
+                    spacing: 8,
+                    expansionFactor: 3,
+                  ),
               ),
-            )
+            ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  @override
-  void afterFirstLayout(BuildContext context) {
-      pages = [
-        SignupStoreNameFragment(),
-        StoreSignupDateFragment(),
-        StoreSignupDateFragment(),
-      ];
-  }
+
 }

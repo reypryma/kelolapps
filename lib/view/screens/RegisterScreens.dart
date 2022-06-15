@@ -8,6 +8,8 @@ import 'package:kelolapps/utils/app_strings.dart';
 import 'package:kelolapps/utils/dimensions.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+import 'fragments/store_register/signup_store_name_fragment.dart';
+
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
@@ -113,7 +115,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 text: AppString.lblSignUp,
                 textColor: Colors.white,
                 onTap: () {
-                    Get.toNamed(RouteHelper.storeRegister);
+                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>Second()));
+                    Get.to(StoreSignupNameFragment());
                 },
                 shapeBorder:
                     RoundedRectangleBorder(borderRadius: radius(defaultRadius)),
