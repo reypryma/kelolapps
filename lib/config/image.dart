@@ -7,4 +7,5 @@ class KelolaImage{
   static const String promoIconFill = '${KELOLAPPS_IMAGES_URL}/Promo.svg';
   static const String kelolaLogoShort = 'assets/kelolapps/Logo-Icon.png';
   static const String kelolaLogoLong = '${KELOLAPPS_IMAGES_URL}/Logo-Long.png';
+  static const String kelolaLetsJoin = '${KELOLAPPS_IMAGES_URL}/Lets-image.png';
 }

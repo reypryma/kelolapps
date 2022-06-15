@@ -113,11 +113,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 text: AppString.lblSignUp,
                 textColor: Colors.white,
                 onTap: () {
-                  // ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  //
-                  // snackBar(context,
-                  //     title: "Login Successful",
-                  //     backgroundColor: KelolakuGlobalColor.colorPrimaryLogo);
+                    Get.toNamed(RouteHelper.storeRegister);
                 },
                 shapeBorder:
                     RoundedRectangleBorder(borderRadius: radius(defaultRadius)),
