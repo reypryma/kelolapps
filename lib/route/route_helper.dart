@@ -33,7 +33,7 @@ class RouteHelper {
 
   static const String storeRegister = '/register-store';
   static getStoreRegisterRoute() => '$storeRegister';
-
+  
   static List<GetPage> routes = [
     // GetPage(name: initial, page: () => DashboardScreen(pageIndex: 0)),
     GetPage(name: splash, page: () => const SplashScreenPage()),

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Dimensions {
   // static const double FONT_SIZE_EXTRA_SMALL = 10.0;
   // static const double FONT_SIZE_SMALL = 12.0;
@@ -20,7 +22,7 @@ class Dimensions {
   //Column
   static const double MARGIN_SIZE_GRID_8 = 8.0;
   static const double MARGIN_SIZE_GRID_6 = 24.0;
-
+  static const double MARGIN_SIZE_GRID_4 = 25.0;
   //Row
   static const double VERTICAL_SIZE_8 = 8;
   static const double VERTICAL_SIZE_16 = 16;

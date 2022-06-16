@@ -122,7 +122,7 @@ RichText createRichText({
   );
 }
 
-const TextStyle ff = TextStyle(
+TextStyle ff = TextStyle(
     fontSize: 16,
     fontFamily: 'Bariol',
     fontWeight: FontWeight.w100,
@@ -140,7 +140,7 @@ TextStyle large36 = primaryTextStyle(
   weight: FontWeight.w700,
 );
 
-const TextStyle large28 = TextStyle(
+TextStyle large28 = TextStyle(
   fontSize: 28,
   fontFamily: 'Inter',
   fontWeight: FontWeight.w700,
@@ -164,20 +164,20 @@ TextStyle heading3 = primaryTextStyle(
   weight: FontWeight.w700,
 );
 
-const TextStyle heading4 = TextStyle(
+TextStyle heading4 = TextStyle(
   fontSize: 14,
   fontFamily: 'Inter',
   fontWeight: FontWeight.w700,
 );
 
-const TextStyle heading5 = TextStyle(
+TextStyle heading5 = TextStyle(
   fontSize: 12,
   fontFamily: 'Inter',
   fontWeight: FontWeight.w700,
 );
 
 // Title
-//   const TextStyle title20 = TextStyle(
+//   TextStyle title20 = TextStyle(
 //     fontSize: 20,
 //     fontFamily: 'Inter',
 //     fontWeight: FontWeight.w600,
@@ -207,36 +207,36 @@ TextStyle title12 = primaryTextStyle(
   weight: FontWeight.w600,
 );
 
-const TextStyle title10 = TextStyle(
+TextStyle title10 = TextStyle(
   fontSize: 10,
   fontFamily: 'Inter',
   fontWeight: FontWeight.w600,
 );
 
-const TextStyle title9 = TextStyle(
+TextStyle title9 = TextStyle(
   fontSize: 9,
   fontFamily: 'Inter',
   fontWeight: FontWeight.w600,
 );
 
 // Long Description Text
-const TextStyle textRegular48 = TextStyle(
+TextStyle textRegular48 = TextStyle(
   fontSize: 48,
   fontFamily: 'Manrope',
   fontWeight: FontWeight.w400,
 );
 
-const TextStyle textRegular36 = TextStyle(
+TextStyle textRegular36 = TextStyle(
   fontSize: 36,
   fontFamily: 'Manrope',
 );
 
-const TextStyle textRegular28 = TextStyle(
+TextStyle textRegular28 = TextStyle(
   fontSize: 28,
   fontFamily: 'Manrope',
 );
 
-const TextStyle textRegular24 = TextStyle(
+TextStyle textRegular24 = TextStyle(
   fontSize: 24,
   fontFamily: 'Manrope',
 );
@@ -246,33 +246,33 @@ TextStyle textRegular20 = TextStyle(
   fontFamily: 'Manrope',
 );
 
-const TextStyle textRegular16 = TextStyle(
+TextStyle textRegular16 = TextStyle(
   fontSize: 16,
   fontFamily: 'Manrope',
 );
 
-const TextStyle textRegular14 = TextStyle(
+TextStyle textRegular14 = TextStyle(
   fontSize: 14,
   fontFamily: 'Manrope',
 );
 
-const TextStyle textRegular12 = TextStyle(
+TextStyle textRegular12 = TextStyle(
   fontSize: 12,
   fontFamily: 'Manrope',
 );
 
-const TextStyle textRegular10 = TextStyle(
+TextStyle textRegular10 = TextStyle(
   fontSize: 10,
   fontFamily: 'Manrope',
 );
 
-const TextStyle textRegular9 = TextStyle(
+TextStyle textRegular9 = TextStyle(
   fontSize: 9,
   fontFamily: 'Manrope',
 );
 
 // Long Text with more bold
-const TextStyle textSemibold20 = TextStyle(
+TextStyle textSemibold20 = TextStyle(
   fontSize: 20,
   fontFamily: 'Manrope',
   fontWeight: FontWeight.w600,
@@ -284,25 +284,25 @@ TextStyle textSemibold16 = secondaryTextStyle(
   weight: FontWeight.w600,
 );
 
-const TextStyle textSemibold14 = TextStyle(
+TextStyle textSemibold14 = TextStyle(
   fontSize: 14,
   fontFamily: 'Manrope',
   fontWeight: FontWeight.w600,
 );
 
-const TextStyle textSemibold12 = TextStyle(
+TextStyle textSemibold12 = TextStyle(
   fontSize: 12,
   fontFamily: 'Manrope',
   fontWeight: FontWeight.w600,
 );
 
-const TextStyle textSemibold10 = TextStyle(
+TextStyle textSemibold10 = TextStyle(
   fontSize: 10,
   fontFamily: 'Manrope',
   fontWeight: FontWeight.w600,
 );
 
-const TextStyle textSemibold9 = TextStyle(
+TextStyle textSemibold9 = TextStyle(
   fontSize: 9,
   fontFamily: 'Manrope',
   fontWeight: FontWeight.w600,

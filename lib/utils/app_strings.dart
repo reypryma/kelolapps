@@ -15,5 +15,13 @@ class AppString{
   static const hdWelcome = "Selamat Bergabung";
   static const descWelcome = "Kembangkan Tokomu lebih cepat dan mudah, lihat perkembangan tokomu dan pahami pembeli, semua dalam satu aplikasi!";
   static const createStoreNow = "Mulai Buat Toko Sekarang";
+  static const lblInfoStore = "Informasi Toko";
+  static const lblNumberContactStore = "Nomor Kontak Toko";
+
+  static const lblAlamat = "Alamat";
+  static const hintAlamat = "Detail Alamat Toko";
+  static const lblStoreDescription = "Detail Alamat Toko";
+  static const back = "Kembali";
+
 
 }

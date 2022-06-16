@@ -1,13 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:kelolapps/config/image.dart';
+import 'package:kelolapps/config/kelolaku/text_style.dart';
+import 'package:kelolapps/utils/AppWidget.dart';
+import 'package:kelolapps/utils/app_strings.dart';
+import 'package:kelolapps/utils/countrypicker/country_code_picker.dart';
 import 'package:kelolapps/utils/dimensions.dart';
+import 'package:kelolapps/view/screens/sheets/GetPictureSheet.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+import '../../../../config/kelolaku/color_style.dart';
+import '../../../../config/kelolaku/constant.dart';
+
 class StoreSignupInfoFragment extends StatefulWidget {
+  static String tag = '/StoreSignupInfoFragment';
+  final isEditProfile;
+
+  StoreSignupInfoFragment({this.isEditProfile});
+
   @override
   StoreSignupInfoFragmentState createState() => StoreSignupInfoFragmentState();
 }
 
 class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
+
+  var formKey = GlobalKey<FormState>();
+  var autoValidate = false;
+
+  var usernameCont = TextEditingController();
+  var emailCont = TextEditingController();
+  var phoneCont = TextEditingController();
+  var addressCont = TextEditingController();
+  var descriptionCont = TextEditingController();
+
+  var addressFocus = FocusNode();
+  var description = FocusNode();
+
   @override
   void initState() {
     super.initState();
@@ -15,7 +43,13 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
   }
 
   Future<void> init() async {
-    //
+    setStatusBarColor(Colors.white, statusBarIconBrightness: Brightness.dark);
+  }
+
+  @override
+  void dispose() {
+    setStatusBarColor(Colors.white, statusBarIconBrightness: Brightness.dark);
+    super.dispose();
   }
 
   @override
@@ -25,83 +59,266 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            const SizedBox(height: 60),
-            // Image(
-            //   image: AssetImage(cp_senMail),
-            //   height: 200,
-            //   width: context.width(),
-            //   fit: BoxFit.cover,
-            // ),
-            const SizedBox(height: 16, width: 16),
-            const Text(
-              "Verify your email",
-              textAlign: TextAlign.start,
-              overflow: TextOverflow.clip,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.normal,
-                fontSize: 18,
-                // color: Color(0xff000000),
-              ),
+    return SafeArea(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text(
+            AppString.lblInfoStore,
+            style: heading1.copyWith(color: KelolakuGlobalColor.dark),
+          ),
+          leading: Container(
+            margin: EdgeInsets.all(8),
+            decoration: boxDecorationWithRoundedCorners(
+              backgroundColor: context.cardColor,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.grey.withOpacity(0.2)),
             ),
-            SizedBox(height: 16, width: 16),
-            const Expanded(
-              flex: 1,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: Dimensions.VERTICAL_SIZE_32),
-                child: Text(
-                  "We sent a verification code to your email.\nplease tap the link inside that email to \ncontinue",
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 14,
-                    color: Colors.grey,
+            child: Icon(Icons.arrow_back, color: KelolakuGlobalColor.dark),
+          ).onTap(() {
+            finish(context);
+          }),
+          centerTitle: true,
+          elevation: 0.0,
+          brightness: Brightness.dark,
+        ),
+        body: Container(
+          height: context.height(),
+          width: context.width(),
+          color: Colors.white,
+          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.06666),
+          // decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/walletApp/wa_bg.jpg'), fit: BoxFit.cover)),
+          child: Stack(
+            alignment: AlignmentDirectional.topCenter,
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 80),
+                padding:
+                    EdgeInsets.only(top: 50, left: 16, right: 16, bottom: 16),
+                width: context.width(),
+                height: context.height(),
+                // decoration: boxDecorationWithShadow(backgroundColor: context.cardColor, borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: AppButton(
+                          // padding: EdgeInsets.all(12),
+                          shapeBorder:
+                              RoundedRectangleBorder(borderRadius: radius(5)),
+                          color: KelolakuGlobalColor.colorPrimaryExtra,
+                          text: 'Unggah Gambar untuk Toko',
+                          textStyle: heading5.copyWith(color: Colors.white),
+                          onTap: () {
+                              // Get.to(FileManagerBottomSheet());
+                            showPictureChooserSheet(context);
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: Dimensions.VERTICAL_SIZE_32,),
+                      Text(
+                        AppString.lblNumberContactStore,
+                        style: title16.copyWith(
+                          color: KelolakuGlobalColor.dark
+                        ),
+                      ),
+                      SizedBox(height: Dimensions.VERTICAL_SIZE_8,),
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            decoration: boxDecoration(showShadow: false, bgColor: Colors.white, radius: 8, color: KelolakuGlobalColor.dark),
+                            padding: EdgeInsets.all(1),
+                            child: CountryCodePicker(onChanged: print, showFlag: false, padding: EdgeInsets.all(0)),
+                          ),
+                          SizedBox(width: 4),
+                          Expanded(
+                            child: Container(
+                              decoration: boxDecoration(showShadow: true, bgColor: Colors.white, radius: 8, color: KelolakuGlobalColor.lightBorderInput),
+                              // padding: EdgeInsets.all(0),
+                              child: TextFormField(
+                                keyboardType: TextInputType.number,
+                                maxLength: 10,
+                                style: const TextStyle(fontSize: textSizeLargeMedium, fontFamily: "Regular"),
+                                decoration: const InputDecoration(
+                                  counterText: "",
+                                  contentPadding: EdgeInsets.fromLTRB(16, 12, 16, 0),
+                                  hintText: "8573511232",
+                                  prefixIcon: Icon(Icons.call, color: black),
+                                  hintStyle: TextStyle(color: KelolakuGlobalColor.light, fontSize: textSizeMedium),
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: Dimensions.VERTICAL_SIZE_32,),
+                      Text(
+                        AppString.lblAlamat,
+                        style: heading3.copyWith(
+                            color: KelolakuGlobalColor.dark
+                        ),
+                      ),
+                      const SizedBox(height: Dimensions.VERTICAL_SIZE_8,),
+                      TextFormField(
+                        controller: addressCont,
+                        focusNode: addressFocus,
+                        style: textRegular12.copyWith(
+                            color: Colors.grey.shade600
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.location_on,
+                            color: Colors.grey,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14.0),
+                            borderSide: BorderSide(color: KelolakuGlobalColor.colorPrimaryExtra),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14.0),
+                            borderSide: BorderSide(width: 1, color: KelolakuGlobalColor.lightBorderInput),
+                          ),
+                          labelText: AppString.hintAlamat,
+                          labelStyle: textRegular16.copyWith(
+                              color: KelolakuGlobalColor.dark40
+                          ),
+                          alignLabelWithHint: true,
+                        ),
+                        maxLines: 5,
+                        cursorColor: blackColor,
+                        keyboardType: TextInputType.multiline,
+                        validator: (s) {
+                          if (s!.trim().isEmpty) return 'Masukkan Dekripsi Toko misal tentang usaha dan produk yang tersedia';
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: Dimensions.VERTICAL_SIZE_16,),
+                      Text(
+                        AppString.lblStoreDescription,
+                        style: title16.copyWith(
+                            color: KelolakuGlobalColor.dark
+                        ),
+                      ),
+                      const SizedBox(height: Dimensions.VERTICAL_SIZE_8,),
+                      TextFormField(
+                        controller: descriptionCont,
+                        focusNode: description,
+                        style: textRegular12.copyWith(
+                            color: Colors.grey.shade600
+                        ),
+                        decoration: InputDecoration(
+                          // prefixIcon: Icon(
+                          //   Icons.location_on,
+                          //   color: Colors.grey,
+                          // ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14.0),
+                            borderSide: BorderSide(color: KelolakuGlobalColor.colorPrimaryExtra),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14.0),
+                            borderSide: BorderSide(width: 1, color: KelolakuGlobalColor.lightBorderInput),
+                          ),
+                          labelText: 'Masukkan Dekripsi Toko misal tentang usaha dan produk yang tersedia',
+                          labelStyle: textRegular16.copyWith(
+                              color: KelolakuGlobalColor.dark40
+                          ),
+                          alignLabelWithHint: true,
+                        ),
+                        maxLines: 5,
+                        cursorColor: blackColor,
+                        keyboardType: TextInputType.multiline,
+                        validator: (s) {
+                          if (s!.trim().isEmpty) return 'Masukkan Dekripsi Toko misal tentang usaha dan produk yang tersedia';
+                          return null;
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-            MaterialButton(
-              onPressed: () {
-                // CPIdCardScreen().launch(context);
-              },
-              color: Color(0xff2972ff),
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0),
+              //Upload Image
+              Stack(
+                alignment: AlignmentDirectional.bottomEnd,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 8),
+                    height: 110,
+                    width: 110,
+                    decoration: BoxDecoration(
+                        color: KelolakuGlobalColor.ocean,
+                        shape: BoxShape.circle),
+                    child: Image.asset(KelolaImage.uploadStoreImageCircle),
+                  ),
+                  // Positioned(
+                  //   bottom: 16,
+                  //   child: Container(
+                  //     padding: EdgeInsets.all(6),
+                  //     child: Icon(Icons.edit, color: Colors.white, size: 20),
+                  //     decoration: BoxDecoration(color: KelolakuGlobalColor.light, shape: BoxShape.circle),
+                  //   ),
+                  // ),
+                ],
               ),
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Text(
-                "Check my inbox",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, fontStyle: FontStyle.normal),
-              ),
-              textColor: Color(0xffffffff),
-              height: 40,
-              minWidth: MediaQuery.of(context).size.width,
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 24, 0, 24),
-              child: TextButton(
-                onPressed: () {
-                  //
-                },
-                child: Text(
-                  "Resend email",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, fontStyle: FontStyle.normal),
+              Positioned(
+                bottom: 16,
+                left: 16,
+                right: 16,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: (context.width() * 0.40533333333 ),
+                      child: TextButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                      child: Text(
+                        AppString.back,
+                        style: heading4.copyWith(
+                          color: KelolakuGlobalColor.ocean
+                        ),
+                      ),
+                        // width: (context.width() - (3 * 16)) * 0.5,
+                        // height: 60,
+                        // text: AppString.back,
+                        // textStyle: boldTextStyle(),
+                        // shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                        // elevation: 0,
+                        // onTap: () {
+                        //
+                        // },
+                        // color: grey.withOpacity(0.1),
+                        // hoverColor: Colors.transparent,
+                        // splashColor: Colors.transparent,
+                        // focusColor: Colors.transparent,
+                      ),
+                    ),
+                    AppButton(
+                      width: (context.width() * 0.40533333333 ),
+                      text: 'Buat Toko Sekarang',
+                      height: 60,
+                      elevation: 0,
+                      shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      color: KelolakuGlobalColor.colorPrimaryExtra,
+                      textStyle: heading4.copyWith(
+                        color: Colors.white
+                      ),
+                      onTap: () {
+
+                      },
+                    ),
+                  ],
                 ),
-                //  textColor: Color(0xff000000),
               ),
-            ),
-          ],
+            ],
+          ).paddingTop(60),
         ),
       ),
     );
