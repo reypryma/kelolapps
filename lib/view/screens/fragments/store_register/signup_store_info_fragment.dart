@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:kelolapps/config/image.dart';
 import 'package:kelolapps/config/kelolaku/text_style.dart';
 import 'package:kelolapps/utils/AppWidget.dart';
 import 'package:kelolapps/utils/app_strings.dart';
 import 'package:kelolapps/utils/countrypicker/country_code_picker.dart';
 import 'package:kelolapps/utils/dimensions.dart';
+import 'package:kelolapps/view/screens/fragments/store_register/store_signup_date_fragment.dart';
 import 'package:kelolapps/view/screens/sheets/GetPictureSheet.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -23,6 +27,8 @@ class StoreSignupInfoFragment extends StatefulWidget {
 }
 
 class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
+  PickedFile? pickImage;
+  String fileName = '', filePath = '';
 
   var formKey = GlobalKey<FormState>();
   var autoValidate = false;
@@ -44,6 +50,15 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
 
   Future<void> init() async {
     setStatusBarColor(Colors.white, statusBarIconBrightness: Brightness.dark);
+  }
+
+  Future getImage() async {
+    pickImage = await ImagePicker().getImage(source: ImageSource.gallery);
+    if (pickImage != null) {
+      fileName = pickImage!.path.split('/').last;
+      filePath = pickImage!.path;
+      setState(() {});
+    }
   }
 
   @override
@@ -250,11 +265,12 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
                     margin: EdgeInsets.only(right: 8),
                     height: 110,
                     width: 110,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: KelolakuGlobalColor.ocean,
                         shape: BoxShape.circle),
-                    child: Image.asset(KelolaImage.uploadStoreImageCircle),
-                  ),
+                    child: pickImage == null ? Image.asset(KelolaImage.uploadStoreImageCircle) :  Image.file(File(pickImage!.path), fit: BoxFit.cover),
+
+                    ),
                   // Positioned(
                   //   bottom: 16,
                   //   child: Container(
@@ -302,7 +318,7 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
                     ),
                     AppButton(
                       width: (context.width() * 0.40533333333 ),
-                      text: 'Buat Toko Sekarang',
+                      text: AppString.next,
                       height: 60,
                       elevation: 0,
                       shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -311,7 +327,8 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
                         color: Colors.white
                       ),
                       onTap: () {
-
+                        // await getImage();
+                        Get.to(()=>StoreSignupDateFragment());
                       },
                     ),
                   ],

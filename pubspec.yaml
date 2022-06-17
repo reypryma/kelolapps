@@ -46,6 +46,7 @@ dependencies:
   # Common
   share: ^2.0.4
   html: ^0.15.0
+  image_picker: ^0.8.5+3
 
   smooth_page_indicator: 1.0.0+2
 

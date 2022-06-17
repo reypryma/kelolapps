@@ -22,6 +22,6 @@ class AppString{
   static const hintAlamat = "Detail Alamat Toko";
   static const lblStoreDescription = "Detail Alamat Toko";
   static const back = "Kembali";
-
+  static const next = "Selanjutnya";
 
 }
