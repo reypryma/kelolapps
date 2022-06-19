@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
+import 'package:kelolapps/config/image.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
 import 'package:kelolapps/data/model/dayListModel/DayOpen.dart';
 import 'package:kelolapps/data/model/selected_model.dart';
+import 'package:kelolapps/utils/AppWidget.dart';
 import 'package:kelolapps/utils/app_strings.dart';
 import 'package:kelolapps/utils/dimensions.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -20,8 +23,8 @@ class StoreSignupDateFragment extends StatefulWidget {
 class StoreSignupDateFragmentState extends State<StoreSignupDateFragment> {
   List<KSelectOptionsModel> mDayList = [];
   List<String> selectedChoices = [];
+  late TimeOfDay selectedOpenTime, selectedClosedTime;
   var mDay = 0;
-
 
   @override
   void initState() {
@@ -30,11 +33,29 @@ class StoreSignupDateFragmentState extends State<StoreSignupDateFragment> {
   }
 
   Future<void> init() async {
-    //
-    // DayOpen.values.forEach((name) {
-    //   mDayList.add(name.name);
-    // });
     mDayList = getDayLists();
+    selectedOpenTime = TimeOfDay.now();
+    selectedClosedTime = TimeOfDay.now();
+  }
+
+  Future<Null> _selectTime(BuildContext context, TimeOfDay selectedTime, int option) async {
+    final TimeOfDay? picked = await showTimePicker(
+        context: context,
+        initialTime: selectedTime,
+        builder: (BuildContext context, Widget? child) {
+          return CustomTheme(
+            child: MediaQuery(
+              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+              child: child!,
+            ),
+          );
+        });
+
+    if (picked != null) {
+      setState(() {
+        option == 1 ? selectedOpenTime = picked : selectedClosedTime = picked;
+      });
+    }
   }
 
   @override
@@ -44,95 +65,39 @@ class StoreSignupDateFragmentState extends State<StoreSignupDateFragment> {
 
   @override
   Widget build(BuildContext context) {
-/*    final mDayInfo = GridView.builder(
-      scrollDirection: Axis.vertical,
-      itemCount: mDayList.length,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return GestureDetector(
-            onTap: () {
-              setState(() {
-                mDay = index;
-              });
-            },
-            child: Container(
-              // alignment: Alignment.center,
+
+    final mDayInfo = Wrap(
+        spacing: 16,
+        runSpacing: 16,
+        children: mDayList.map((e) {
+          //int index = mDayList.indexOf(e);
+          return Container(
+              alignment: Alignment.center,
+              width: context.width() * 0.176,
+              height: context.height() * 0.03940886699,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: mDay == index
+                  //If true color box ocean
+                  color: e.selected.validate()
                       ? KelolakuGlobalColor.ocean
-                      : KelolakuGlobalColor.light70),
-              // padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      : Colors.transparent,
+                  border: e.selected.validate()
+                      ? Border.all(style: BorderStyle.none)
+                      : Border.all(color: KelolakuGlobalColor.grayFed)),
+              // margin: const EdgeInsets.all(4),
+              padding: const EdgeInsets.all(4),
               child: Text(
-                mDayList[index],
+                e.title.validate(),
                 style: heading4.copyWith(
-                    color: mDay == index
+                    color: e.selected.validate()
                         ? KelolakuGlobalColor.light70
-                        : KelolakuGlobalColor.dark30),
-              ).center(),
-            ));
-      },
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        mainAxisSpacing: 16,
-        // crossAxisSpacing: 16,
-        childAspectRatio: 2.0,
-      ),
-    );*/
-
-    final mDayInfo =
-      Wrap(
-          spacing: 16,
-          runSpacing: 16,
-          children: mDayList.map((e) {
-            //int index = mDayList.indexOf(e);
-            return e.selected.validate() == true ?
-            Container(
-              alignment: Alignment.center,
-              width: context.width() * 0.176,
-              height: context.height() * 0.03940886699,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                  color: KelolakuGlobalColor.ocean
-              ),
-              // margin: const EdgeInsets.all(4),
-              padding: const EdgeInsets.all(4),
-              child: Text(
-                e.title.validate(),
-                style: heading4.copyWith(
-                    color: KelolakuGlobalColor.light70
-                ),
+                        : KelolakuGlobalColor.grayText),
                 textAlign: TextAlign.center,
-              ).onTap((){
+              ).onTap(() {
                 e.selected = !e.selected!;
                 setState(() {});
-              }),
-            ) : Container(
-              //If not selected
-              alignment: Alignment.center,
-              width: context.width() * 0.176,
-              height: context.height() * 0.03940886699,
-              decoration: BoxDecoration(
-                border: Border.all(color: KelolakuGlobalColor.grayText),
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.transparent
-              ),
-              // margin: const EdgeInsets.all(4),
-              padding: const EdgeInsets.all(4),
-              child: Text(
-                e.title.validate(),
-                    style: heading4.copyWith(
-                      color: KelolakuGlobalColor.dark30
-                    ),
-                textAlign: TextAlign.center,
-              ).onTap((){
-                e.selected = !e.selected!;
-                setState(() {});
-              }),
-            );
-          }).toList());
-
+              }));
+        }).toList());
 
     return SafeArea(
         child: Scaffold(
@@ -178,44 +143,145 @@ class StoreSignupDateFragmentState extends State<StoreSignupDateFragment> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     // const SizedBox(height: Dimensions.VERTICAL_SIZE_8,),
                     Container(
                         alignment: Alignment.topLeft,
-                      height: 350,
-                      // color: KelolakuGlobalColor.dark20.withAlpha(20),
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        color: KelolakuGlobalColor.dark10,
-                      ),
-                      child: Column(
+                        height: 350,
+                        // color: KelolakuGlobalColor.dark20.withAlpha(20),
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: KelolakuGlobalColor.dark10,
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  AppString.selectOpeningDay,
+                                  style: heading2.copyWith(
+                                      color: KelolakuGlobalColor.dark),
+                                ),
+                              ),
+                            ),
+                            // const SizedBox(height: Dimensions.VERTICAL_SIZE_8,),
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 10,
+                                  bottom: Dimensions.VERTICAL_SIZE_16),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  AppString.descSelectOpeningDay,
+                                  style: textRegular16.copyWith(
+                                      color: KelolakuGlobalColor.dark40),
+                                ),
+                              ),
+                            ),
+                            mDayInfo,
+                          ],
+                        )
+                    ),
+                    const SizedBox(
+                      height: Dimensions.VERTICAL_SIZE_16,
+                    ),
+                    Container(
+                      width: context.width(),
+                      // margin: const EdgeInsets.symmetric(
+                      //     horizontal: Dimensions.MARGIN_SIZE_GRID_4),
+                      child: Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                AppString.selectOpeningDay,
-                                style: heading2.copyWith(color: KelolakuGlobalColor.dark),
-                              ),
-                            ),
-                          ),
-                          // const SizedBox(height: Dimensions.VERTICAL_SIZE_8,),
-                          Container(
-                            padding: const EdgeInsets.only(left: 10, bottom: Dimensions.VERTICAL_SIZE_16),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                AppString.descSelectOpeningDay,
-                                style: textRegular16.copyWith(color: KelolakuGlobalColor.dark40),
-                              ),
-                            ),
-                          ),
-                          mDayInfo,
+                          Flexible(child:
+                          Card(
+                              elevation: 4,
+                              child: ListTile(
+                                onTap: () {
+                                  _selectTime(context, selectedOpenTime, 1);
+                                },
+                                title: Text(
+                                  AppString.chooseTimeOpen,
+                                  style: heading3.copyWith(color: KelolakuGlobalColor.dark),
+                                ),
+                                subtitle: Text(
+                                  "${selectedOpenTime.hour < 10 ? "0${selectedOpenTime.hour}" : "${selectedOpenTime.hour}"} : ${selectedOpenTime.minute < 10 ? "0${selectedOpenTime.minute}" : "${selectedOpenTime.minute}"} ${selectedOpenTime.period != DayPeriod.am ? 'PM' : 'AM'}   ",
+                                  style: textRegular16.copyWith(
+                                      color: KelolakuGlobalColor.dark
+                                  ),
+                                ),
+                                trailing: IconButton(
+                                  icon: const Icon(
+                                    Icons.date_range,
+                                    color: KelolakuGlobalColor.dark,
+                                  ),
+                                  onPressed: () {
+                                    _selectTime(context, selectedOpenTime, 1);
+                                    setState(() {});
+                                  },
+                                ),
+                              ))),
+                          Flexible(flex: 1, child: Card(
+                              elevation: 4,
+                              child: ListTile(
+                                onTap: () {
+                                  _selectTime(context, selectedClosedTime, 2);
+                                },
+                                title: Text(
+                                  AppString.chooseTimeClosed,
+                                  style: heading3.copyWith(color: KelolakuGlobalColor.dark),
+                                ),
+                                subtitle: Text(
+                                  "${selectedClosedTime.hour < 10 ? "0${selectedClosedTime.hour}" : "${selectedClosedTime.hour}"} : ${selectedClosedTime.minute < 10 ? "0${selectedClosedTime.minute}" : "${selectedClosedTime.minute}"} ${selectedClosedTime.period != DayPeriod.am ? 'PM' : 'AM'}   ",
+                                  style: textRegular16.copyWith(
+                                      color: KelolakuGlobalColor.dark
+                                  ),
+                                ),
+                                trailing: IconButton(
+                                  icon: const Icon(
+                                    Icons.date_range,
+                                    color: KelolakuGlobalColor.dark,
+                                  ),
+                                  onPressed: () {
+                                    _selectTime(context, selectedClosedTime, 2);
+                                    setState(() { });
+                                  },
+                                ),
+                              )))
                         ],
-                      )
-                    )
+                      ),
+                    ),
+                    const SizedBox(height: Dimensions.VERTICAL_SIZE_32,),
+                    TextFormField(
+                      style: textRegular12.copyWith(
+                          color: Colors.grey.shade600
+                      ),
+                      decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14.0),
+                          borderSide: BorderSide(color: KelolakuGlobalColor.colorPrimaryExtra),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(14.0),
+                          borderSide: BorderSide(width: 1, color: KelolakuGlobalColor.lightBorderInput),
+                        ),
+                        labelText: AppString.extraStoreAvailable,
+                        hintMaxLines: 2,
+                        labelStyle: textRegular16.copyWith(
+                            color: KelolakuGlobalColor.dark40
+                        ),
+                        alignLabelWithHint: true,
+                      ),
+                      maxLines: 5,
+                      cursorColor: blackColor,
+                      keyboardType: TextInputType.multiline,
+                      validator: (s) {
+                        if (s!.trim().isEmpty) return 'Masukkan Dekripsi Toko misal tentang usaha \n dan produk yang tersedia';
+                        return null;
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -273,6 +339,4 @@ class StoreSignupDateFragmentState extends State<StoreSignupDateFragment> {
       ),
     ));
   }
-
-
 }

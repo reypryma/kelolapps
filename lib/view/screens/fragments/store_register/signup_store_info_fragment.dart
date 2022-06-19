@@ -90,7 +90,7 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
               borderRadius: BorderRadius.circular(12),
               border: Border.all(color: Colors.grey.withOpacity(0.2)),
             ),
-            child: Icon(Icons.arrow_back, color: KelolakuGlobalColor.dark),
+            child: const Icon(Icons.arrow_back, color: KelolakuGlobalColor.dark),
           ).onTap(() {
             finish(context);
           }),
@@ -186,7 +186,7 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
                             color: Colors.grey.shade600
                         ),
                         decoration: InputDecoration(
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.location_on,
                             color: Colors.grey,
                           ),
@@ -199,6 +199,7 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
                             borderSide: BorderSide(width: 1, color: KelolakuGlobalColor.lightBorderInput),
                           ),
                           labelText: AppString.hintAlamat,
+                          hintMaxLines: 2,
                           labelStyle: textRegular16.copyWith(
                               color: KelolakuGlobalColor.dark40
                           ),
@@ -208,7 +209,7 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
                         cursorColor: blackColor,
                         keyboardType: TextInputType.multiline,
                         validator: (s) {
-                          if (s!.trim().isEmpty) return 'Masukkan Dekripsi Toko misal tentang usaha dan produk yang tersedia';
+                          if (s!.trim().isEmpty) return 'Masukkan Dekripsi Toko misal tentang usaha \n dan produk yang tersedia';
                           return null;
                         },
                       ),

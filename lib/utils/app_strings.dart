@@ -26,4 +26,8 @@ class AppString{
 
   static const selectOpeningDay = "Pilih Hari Buka";
   static const descSelectOpeningDay = "Bisa Pilih  lebih dari satu. Hari yang dipilih berwarna hijau.";
+  static const chooseTimeOpen = "Pilih Jam Buka";
+  static const chooseTimeClosed = "Pilih Jam Tutup";
+  static const extraStoreAvailable = "Masukkan Informasi tambahan, misal  waktu  istirahat";
+
 }
