@@ -328,7 +328,7 @@ class StoreSignupInfoFragmentState extends State<StoreSignupInfoFragment> {
                       ),
                       onTap: () {
                         // await getImage();
-                        Get.to(()=>StoreSignupDateFragment());
+                        Get.to(StoreSignupDateFragment());
                       },
                     ),
                   ],

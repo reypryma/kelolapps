@@ -24,4 +24,6 @@ class AppString{
   static const back = "Kembali";
   static const next = "Selanjutnya";
 
+  static const selectOpeningDay = "Pilih Hari Buka";
+  static const descSelectOpeningDay = "Bisa Pilih  lebih dari satu. Hari yang dipilih berwarna hijau.";
 }
