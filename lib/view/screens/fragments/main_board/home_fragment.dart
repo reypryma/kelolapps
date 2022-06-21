@@ -1,7 +1,8 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:kelolapps/config/image.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
-import 'package:kelolapps/config/kelolaku/text_style.dart';
+import 'package:kelolapps/utils/AppWidget.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 
@@ -20,99 +21,109 @@ class _HomeFragmentState extends State<HomeFragment> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) { 
           return [
             SliverAppBar(
-              expandedHeight: 230.0,
+              expandedHeight: 330,
               floating: false,
-              backgroundColor: KelolakuGlobalColor.colorPrimaryLogo,
-              forceElevated: true,
               pinned: true,
+              titleSpacing: 0,
               automaticallyImplyLeading: false,
-              leading: null,
-              elevation: .5,
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
+              backgroundColor: innerBoxIsScrolled ? KelolakuGlobalColor.colorPrimaryExtra : context.cardColor,
+              actionsIconTheme: IconThemeData(opacity: 0.0),
+              title: Container(
+                padding: EdgeInsets.fromLTRB(16, 42, 16, 32),
+                margin: EdgeInsets.only(bottom: 8, top: 8),
+                child: Row(
+                  children: [
+                    CircleAvatar(backgroundImage: AssetImage(KelolaImage.uploadStoreImageCircle), radius: 24),
+                    10.width,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hello,Laura",
+                          style: primaryTextStyle(color: KelolakuGlobalColor.light70),
+                        ),
+                        Text(
+                          "How are you today?",
+                          style: primaryTextStyle(color: KelolakuGlobalColor.light70),
+                        ),
+                      ],
+                    ).expand(),
+                    Icon(Icons.notifications, size: 30, color: KelolakuGlobalColor.light70)
+                  ],
+                ),
               ),
-              shadowColor: KelolakuGlobalColor.dark,
-              title: innerBoxIsScrolled ? Text("Hello", style: heading1) : null,
-              bottom: innerBoxIsScrolled?
-              PreferredSize(
-                // preferredSize: Size(context.width(), 580),
-                preferredSize: Size(300, 300),
-                child: Container(
-                  height: 80,
-                  padding: EdgeInsets.only(left: 16, right: 16),
-                  margin: EdgeInsets.only(left: 8),
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 80,
-                        height: 60,
-                        margin: EdgeInsets.only(right: 12),
-                        padding: EdgeInsets.all(16),
-                        child: Image.asset(KelolaImage.kelolaLetsJoin, color: Colors.white),
-                        decoration: boxDecorationDefault(color: tomato),
-                      ),
-                      Expanded(
-                        child: Stack(
-                          alignment: Alignment.centerRight,
-                          children: <Widget>[
-                            Container(
-                              width: context.width(),
-                              height: 60,
-                              padding: EdgeInsets.only(left: 16, right: 16),
-                              margin: EdgeInsets.only(right: context.width() / 28),
-                              decoration: boxDecorationDefault(color: context.scaffoldBackgroundColor),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text('Default Theme', style: heading1, maxLines: 2),
-                                    ],
-                                  ).expand(),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: 30,
-                              height: 30,
-                              child: const Icon(Icons.keyboard_arrow_right, color: Colors.white),
-                              decoration: boxDecorationDefault(color: KelolakuGlobalColor.dark, shape: BoxShape.circle),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ).onTap(() {
-
-                }),
-              )
-                  : null,
               flexibleSpace: FlexibleSpaceBar(
-                collapseMode: CollapseMode.parallax,
-                background: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text("Flexible Space", style: textSemibold20),
-                      SizedBox(height: 16),
-                      SingleChildScrollView(
-                        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-
-                          ],
-                        ),
+                background: Stack(
+                  children: [
+                    Container(
+                      height: 250,
+                      decoration: BoxDecoration(
+                        color: KelolakuGlobalColor.colorPrimaryLogo
                       ),
-                    ],
-                  ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(16, 80, 16, 8),
+                      padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                      decoration: boxDecorationWithRoundedCorners(
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: defaultBoxShadow(),
+                        backgroundColor: context.cardColor,
+                      ),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 130,
+                            child: PageView(
+                              children: [
+                                TopCard(name: "Default Account", acno: "1234567899", bal: "\$12,500"),
+                                TopCard(name: "Adam Johnson", acno: "9874563210", bal: "\$18,000"),
+                                TopCard(name: "Ana Willson", acno: "5821479630", bal: "\$12,500"),
+                              ],
+                              onPageChanged: (value) {
+                              },
+                            ),
+                          ),
+                          10.height,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(top: 8, bottom: 8),
+                                decoration: boxDecorationWithRoundedCorners(
+                                  backgroundColor: KelolakuGlobalColor.skyBlue,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.payment, color: Colors.white, size: 24),
+                                    10.width,
+                                    Text('Payment', style: boldTextStyle(color: Colors.white)),
+                                  ],
+                                ),
+                              ).expand(),
+                              10.width,
+                              Container(
+                                padding: EdgeInsets.only(top: 8, bottom: 8),
+                                decoration: boxDecorationWithRoundedCorners(
+                                  backgroundColor: KelolakuGlobalColor.dark,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    10.width,
+                                    Text('Transfer', style: boldTextStyle(color: Colors.white)),
+                                  ],
+                                ),
+                              ).expand(),
+                            ],
+                          ).paddingAll(16)
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),

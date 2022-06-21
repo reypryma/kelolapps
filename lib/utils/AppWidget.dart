@@ -312,3 +312,49 @@ class ContainerX extends StatelessWidget {
 BoxConstraints dynamicBoxConstraints({double? maxWidth}) {
   return BoxConstraints(maxWidth: maxWidth ?? applicationMaxWidth);
 }
+
+
+class TopCard extends StatelessWidget {
+  final String name;
+  final String acno;
+  final String bal;
+
+  TopCard({Key? key, required this.name, required this.acno, required this.bal}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: context.width(),
+      height: context.height(),
+      color: context.cardColor,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                Icon(Icons.account_balance_wallet, color: KelolakuGlobalColor.colorPrimaryExtra, size: 30).paddingOnly(top: 8, left: 8),
+                Text(name, style: primaryTextStyle(size: 18)).paddingOnly(left: 8, top: 8).expand(),
+                Icon(Icons.info, color: KelolakuGlobalColor.grayFed, size: 20).paddingOnly(right: 8)
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Account Number", style: secondaryTextStyle(size: 16)).paddingOnly(left: 8, top: 8, bottom: 8),
+              Text(acno, style: primaryTextStyle(color: KelolakuGlobalColor.yellow)).paddingOnly(right: 8, top: 8, bottom: 8),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Balance", style: secondaryTextStyle(size: 16)).paddingOnly(left: 8, top: 8, bottom: 8),
+              Text(bal, style: primaryTextStyle(color: KelolakuGlobalColor.orange)).paddingOnly(right: 8, top: 8, bottom: 8),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
