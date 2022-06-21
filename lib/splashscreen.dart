@@ -9,6 +9,7 @@ import 'package:kelolapps/config/kelolaku/color_style.dart';
 import 'package:kelolapps/config/kelolaku/constant.dart';
 import 'package:kelolapps/main.dart';
 import 'package:kelolapps/route/route_helper.dart';
+import 'package:kelolapps/view/screens/DashboardScreen.dart';
 import 'package:kelolapps/view/screens/LoginScreens.dart';
 import 'package:kelolapps/view/screens/fragments/store_register/signup_store_info_fragment.dart';
 import 'package:kelolapps/view/test/learndir.dart';
@@ -40,7 +41,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         //     MaterialPageRoute(builder: (context) => LoginScreen()),
         //     (Route<dynamic> route) => false);
         // Get.offNamed(RouteHelper.login);
-        Get.to(StoreSignupInfoFragment());
+        Get.to(DashboardScreen());
       }
     });
   }
