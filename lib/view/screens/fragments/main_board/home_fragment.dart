@@ -1,10 +1,11 @@
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kelolapps/config/image.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
+import 'package:kelolapps/config/kelolaku/text_style.dart';
 import 'package:kelolapps/utils/AppWidget.dart';
+import 'package:kelolapps/utils/dimensions.dart';
 import 'package:nb_utils/nb_utils.dart';
-
 
 class HomeFragment extends StatefulWidget {
   const HomeFragment({Key? key}) : super(key: key);
@@ -16,120 +17,150 @@ class HomeFragment extends StatefulWidget {
 class _HomeFragmentState extends State<HomeFragment> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+          statusBarColor: KelolakuGlobalColor.colorPrimaryLogo,
+          systemNavigationBarIconBrightness: Brightness.dark),
+    );
     return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) { 
-          return [
-            SliverAppBar(
-              expandedHeight: 330,
-              floating: false,
-              pinned: true,
-              titleSpacing: 0,
-              automaticallyImplyLeading: false,
-              backgroundColor: innerBoxIsScrolled ? KelolakuGlobalColor.colorPrimaryExtra : context.cardColor,
-              actionsIconTheme: IconThemeData(opacity: 0.0),
-              title: Container(
-                padding: EdgeInsets.fromLTRB(16, 42, 16, 32),
-                margin: EdgeInsets.only(bottom: 8, top: 8),
-                child: Row(
-                  children: [
-                    CircleAvatar(backgroundImage: AssetImage(KelolaImage.uploadStoreImageCircle), radius: 24),
-                    10.width,
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Hello,Laura",
-                          style: primaryTextStyle(color: KelolakuGlobalColor.light70),
-                        ),
-                        Text(
-                          "How are you today?",
-                          style: primaryTextStyle(color: KelolakuGlobalColor.light70),
-                        ),
-                      ],
-                    ).expand(),
-                    Icon(Icons.notifications, size: 30, color: KelolakuGlobalColor.light70)
-                  ],
-                ),
-              ),
-              flexibleSpace: FlexibleSpaceBar(
-                background: Stack(
-                  children: [
-                    Container(
-                      height: 250,
-                      decoration: BoxDecoration(
-                        color: KelolakuGlobalColor.colorPrimaryLogo
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(16, 80, 16, 8),
-                      padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                      decoration: boxDecorationWithRoundedCorners(
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: defaultBoxShadow(),
-                        backgroundColor: context.cardColor,
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 130,
-                            child: PageView(
-                              children: [
-                                TopCard(name: "Default Account", acno: "1234567899", bal: "\$12,500"),
-                                TopCard(name: "Adam Johnson", acno: "9874563210", bal: "\$18,000"),
-                                TopCard(name: "Ana Willson", acno: "5821479630", bal: "\$12,500"),
-                              ],
-                              onPageChanged: (value) {
-                              },
-                            ),
-                          ),
-                          10.height,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+      body: SafeArea(
+        child: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                expandedHeight: 230.0,
+                floating: true,
+                backgroundColor: KelolakuGlobalColor.colorPrimaryLogo,
+                forceElevated: innerBoxIsScrolled,
+                pinned: true,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30))),
+                automaticallyImplyLeading: false,
+                elevation: 0.5,
+                actions: [
+                  // IconButton(
+                  //   icon: Icon(Icons.settings, color: tomato),
+                  //   onPressed: () {
+                  //
+                  //   },
+                  // )
+                ],
+                title: innerBoxIsScrolled
+                    ? Text(
+                        "Dashboard Kelolaku",
+                        style: heading1,
+                      )
+                    : null,
+                bottom: !innerBoxIsScrolled
+                    ? PreferredSize(
+                        preferredSize: Size(150, 150),
+                        child: Container(
+                          height: 100,
+                          margin: EdgeInsets.only(left: 16, top: 16),
+                          alignment: Alignment.centerLeft,
+                          child: Row(
                             children: [
                               Container(
-                                padding: EdgeInsets.only(top: 8, bottom: 8),
-                                decoration: boxDecorationWithRoundedCorners(
-                                  backgroundColor: KelolakuGlobalColor.skyBlue,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
+                                width: MediaQuery.of(context).size.width * 0.912,
+                                height: 60,
+                                padding: const EdgeInsets.only(
+                                    left: 16, right: 16),
+                                margin: EdgeInsets.only(
+                                    right: context.width() / 28),
+                                decoration: boxDecorationDefault(
+                                    color:
+                                    Colors.white),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(Icons.payment, color: Colors.white, size: 24),
-                                    10.width,
-                                    Text('Payment', style: boldTextStyle(color: Colors.white)),
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        // Text(
+                                        //   'https://kelolaku.com/majumakmur',
+                                        //   style: textRegular14,
+                                        //   maxLines: 1,
+                                        //   softWrap: true,
+                                        //   overflow: TextOverflow.ellipsis,
+                                        // ),
+                                        Container(
+                                          padding: EdgeInsets.only(top: 8, bottom: 8),
+                                          decoration: boxDecorationWithRoundedCorners(
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text('https://kelolaku.com/majumakmur', style: textRegular16.copyWith(color: KelolakuGlobalColor.dark)),
+                                              Text('Bagikan', style: heading3.copyWith(color: KelolakuGlobalColor.ocean)),
+                                            ],
+                                          ),
+                                        ).expand(),
+                                      ],
+                                    ).expand(),
                                   ],
                                 ),
-                              ).expand(),
-                              10.width,
-                              Container(
-                                padding: EdgeInsets.only(top: 8, bottom: 8),
-                                decoration: boxDecorationWithRoundedCorners(
-                                  backgroundColor: KelolakuGlobalColor.dark,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    10.width,
-                                    Text('Transfer', style: boldTextStyle(color: Colors.white)),
-                                  ],
-                                ),
-                              ).expand(),
+                              ),
                             ],
-                          ).paddingAll(16)
-                        ],
-                      ),
-                    )
-                  ],
+                          ),
+                        ).onTap(() {}),
+                      )
+                    : null,
+                flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.parallax,
+                  background: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Dimensions.MARGIN_SIZE_GRID_8),
+                    margin: EdgeInsets.only(top: Dimensions.VERTICAL_SIZE_16),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Toko Maju Makmur",
+                          style: large36.copyWith(
+                              color: KelolakuGlobalColor.light70),
+                        ),
+                        SizedBox(height: Dimensions.VERTICAL_SIZE_8),
+                        Text(
+                          "Selamat, Kini Tokomu sudah digital! Klik “bagikan” untuk promosikan tokomu di whatsapp dan sosial media untuk menjangkau lebih banyak potensi pembeli.",
+                          style: textSemibold16.copyWith(
+                              color: KelolakuGlobalColor.light70),
+                            maxLines: 3,
+                            softWrap: true,
+                            overflow: TextOverflow.ellipsis,
+                        ),
+                        SingleChildScrollView(
+                          // padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
+            ];
+          },
+          body: Container(
+            margin: EdgeInsets.only(top: 8),
+            width: context.width(),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[],
+                ),
+              ],
             ),
-          ];
-        }, body: Center(
-
+          ),
         ),
       ),
     );

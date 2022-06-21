@@ -20,7 +20,7 @@ class Dimensions {
   static const double UPPER_HEIGHT_GRID = 44;
 
   //Column
-  static const double MARGIN_SIZE_GRID_8 = 8.0;
+  static const double MARGIN_SIZE_GRID_8 = 18.0;
   static const double MARGIN_SIZE_GRID_6 = 24.0;
   static const double MARGIN_SIZE_GRID_4 = 25.0;
   //Row
