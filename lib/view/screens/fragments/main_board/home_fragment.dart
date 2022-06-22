@@ -15,6 +15,9 @@ class HomeFragment extends StatefulWidget {
 }
 
 class _HomeFragmentState extends State<HomeFragment> {
+  bool isNotification = false;
+  late var shopOpen;
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -135,14 +138,6 @@ class _HomeFragmentState extends State<HomeFragment> {
                             softWrap: true,
                             overflow: TextOverflow.ellipsis,
                         ),
-                        SingleChildScrollView(
-                          // padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[],
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -151,18 +146,97 @@ class _HomeFragmentState extends State<HomeFragment> {
             ];
           },
           body: Container(
-            margin: EdgeInsets.only(top: 8),
             width: context.width(),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[],
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: SingleChildScrollView(
+                // padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                // scrollDirection: Axis.horizontal,
+                child: Container(
+                  padding: const EdgeInsets.only(left: Dimensions.MARGIN_SIZE_GRID_8, right: Dimensions.MARGIN_SIZE_GRID_8, top: Dimensions.VERTICAL_SIZE_32, bottom: Dimensions.VERTICAL_SIZE_8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Menu Pilihan", style: heading1.copyWith(color: KelolakuGlobalColor.dark60),),
+                      8.height,
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.14408866995,
+                    width: context.width(),
+                    padding: EdgeInsets.fromLTRB(4, 4, 4, 4),
+                    decoration: boxDecorationWithRoundedCorners(
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: defaultBoxShadow(),
+                      backgroundColor: KelolakuGlobalColor.light70,
+                    ),
+                    child: Column(
+                      children: [
+                        SettingItemWidget(
+                            title: shopOpen,
+                            titleTextStyle: heading3.copyWith(
+                              color: isNotification ? KelolakuGlobalColor.ocean : KelolakuGlobalColor.dark40
+                            ),
+                            leading: Icon(LineIcons.key
+                            , color: isNotification ? KelolakuGlobalColor.ocean : KelolakuGlobalColor.dark40,
+                            ),
+                            trailing: Switch(
+                              value: isNotification,
+                              activeColor: KelolakuGlobalColor.ocean,
+                              activeTrackColor: KelolakuGlobalColor.ocean,
+                              onChanged: (v) {
+                                isNotification = !isNotification;
+                                if(isNotification){
+                                  shopOpen = "Toko Buka";
+                                }else{
+                                  shopOpen = "Toko Libur";
+                                }
+                                setState(() {});
+                              },
+                            ),
+                            padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+                            decoration: boxDecorationWithShadow(borderRadius: BorderRadius.circular(8), backgroundColor: context.cardColor),
+                            onTap: () {
+                              isNotification = !isNotification;
+                              if(isNotification){
+                                shopOpen = "Toko Buka";
+                              }else{
+                                shopOpen = "Toko Libur";
+                              }
+                              setState(() {});
+                            }),
+                        Container(
+                          margin: EdgeInsets.all(Dimensions.MARGIN_SIZE_GRID_8),
+                          child: Text("Jika toko diliburkan, maka toko tidak akan menerima pembelian sampai status toko diganti", style: textRegular16.copyWith(
+                            color: KelolakuGlobalColor.dark
+                          ),),
+                        )
+                      ],
+                    ),
+                  )
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  Future<void> init() async {
+    shopOpen = "Toko Libur";
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    if (mounted) super.setState(fn);
+    isNotification ? shopOpen = "Toko Buka" : "Toko Libur";
   }
 }

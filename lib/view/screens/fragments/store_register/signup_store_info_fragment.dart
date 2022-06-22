@@ -10,7 +10,7 @@ import 'package:kelolapps/utils/app_strings.dart';
 import 'package:kelolapps/utils/countrypicker/country_code_picker.dart';
 import 'package:kelolapps/utils/dimensions.dart';
 import 'package:kelolapps/view/screens/fragments/store_register/store_signup_date_fragment.dart';
-import 'package:kelolapps/view/screens/sheets/GetPictureSheet.dart';
+import 'package:kelolapps/view/screens/sheets/get_picture_sheet.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../../../config/kelolaku/color_style.dart';

@@ -26,6 +26,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
   Widget _bottomTab() {
     return BottomNavigationBar(
       currentIndex: _selectedIndex,
+      backgroundColor: KelolakuGlobalColor.light70,
       onTap: _onItemTapped,
       type: BottomNavigationBarType.fixed,
       selectedLabelStyle: const TextStyle(color: KelolakuGlobalColor.colorPrimaryExtra),

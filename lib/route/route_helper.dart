@@ -6,6 +6,14 @@ import 'package:get/get.dart';
 import 'package:kelolapps/view/screens/LoginScreens.dart';
 import 'package:kelolapps/view/screens/RegisterScreens.dart';
 import 'package:kelolapps/view/screens/StoreRegisterWalkthroughScreen.dart';
+import 'package:kelolapps/view/screens/other_menu/AccountScreen.dart';
+import 'package:kelolapps/view/screens/other_menu/CourseScreen.dart';
+import 'package:kelolapps/view/screens/other_menu/MembershipScreen.dart';
+import 'package:kelolapps/view/screens/other_menu/PromoScreen.dart';
+import 'package:kelolapps/view/screens/other_menu/ReportScreen.dart';
+import 'package:kelolapps/view/screens/other_menu/StoreCampaignScreen.dart';
+import 'package:kelolapps/view/screens/other_menu/StoreEmployeeScreen.dart';
+import 'package:kelolapps/view/screens/other_menu/StoreSettingScreen.dart';
 
 import '../splashscreen.dart';
 
@@ -33,12 +41,41 @@ class RouteHelper {
 
   static const String storeRegister = '/register-store';
   static getStoreRegisterRoute() => '$storeRegister';
-  
+
+  //Menu Route
+  static const String storeReport = '/report';
+  static const String storeBuyer = '/membership';
+  static const String course = '/course';
+  static const String storePromo = '/promo';
+  static const String storeSetting = '/store-setting';
+  static const String storeEmployee = '/store-employee';
+  static const String campaign = '/campaign';
+  static const String account = '/my-account';
+
+  static String getStoreReportRoute() => '$storeReport';
+  static String getStoreBuyerRoute() => '$storeBuyer'; //Membership = Buyer
+  static String getCourseRoute() => '$course';
+  static String getStorePromoRoute() => '$storePromo';
+  static String getStoreSettingRoute() => '$storeSetting';
+  static String getStoreEmployeeRoute() => '$storeEmployee';
+  static String getCampaignRoute() => '$campaign';
+  static String getAccountRoute() => '$account';
+
   static List<GetPage> routes = [
     // GetPage(name: initial, page: () => DashboardScreen(pageIndex: 0)),
     GetPage(name: splash, page: () => const SplashScreenPage()),
     GetPage(name: login, page: () => LoginScreen()),
     GetPage(name: signUp, page: () => RegisterScreen()),
-    GetPage(name: storeRegister, page: () => StoreRegisterWalkthroughScreen())
+    GetPage(name: storeRegister, page: () => StoreRegisterWalkthroughScreen()),
+
+    //  Other Menu Page
+    GetPage(name: storeReport, page: () => ReportScreen()),
+    GetPage(name: storeBuyer, page: () => MembershipScreen()),
+    GetPage(name: course, page: () => CourseScreen()),
+    GetPage(name: storePromo, page: () => PromoScreen()),
+    GetPage(name: storeSetting, page: () => StoreSettingScreen()),
+    GetPage(name: storeEmployee, page: () => StoreEmployeeScreen()),
+    GetPage(name: campaign, page: () => StoreCampaignScreen()),
+    GetPage(name: account, page: () => AccountScreen()),
   ];
 }

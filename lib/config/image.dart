@@ -8,6 +8,21 @@ class KelolaImage{
   static const String kelolaLogoShort = '${KELOLAPPS_IMAGES_URL}/Logo-Icon.png';
   static const String kelolaLogoLong = '${KELOLAPPS_IMAGES_URL}/Logo-Long.png';
   static const String kelolaLetsJoin = '${KELOLAPPS_IMAGES_URL}/Lets-image.png';
+
   static const String uploadStoreImageBox = '${STORE_IMAGES_URL}/Box-image.png';
   static const String uploadStoreImageCircle = '$STORE_IMAGES_URL/Circle-Image.png';
+
+  static const String campaignCategoryImage = '${KELOLAPPS_IMAGES_URL}/campaign.svg';
+  static const String employeeCategoryImage = '${KELOLAPPS_IMAGES_URL}/karyawan.svg';
+  static const String courseCategoryImage = '${KELOLAPPS_IMAGES_URL}/kursus.svg';
+  static const String myAccountCategoryImage = '${KELOLAPPS_IMAGES_URL}/my_account.svg';
+  static const String promoCategoryImage = '${KELOLAPPS_IMAGES_URL}/promo.svg';
+  static const String reportCategoryImage = '${KELOLAPPS_IMAGES_URL}/report.svg';
+  static const String myShopCategoryImage = '${KELOLAPPS_IMAGES_URL}/toko.svg';
+  static const String membershipCategoryImage = '${KELOLAPPS_IMAGES_URL}/vip.svg';
+
+  static const String bannerCategoryImage = 'assets/kelolapps/banner_menu.svg';
+
+
+
 }

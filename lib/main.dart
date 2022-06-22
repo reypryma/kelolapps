@@ -9,10 +9,20 @@ import 'package:kelolapps/config/kelolaku/color_style.dart';
 import 'package:kelolapps/theme/light_theme.dart';
 
 import 'route/route_helper.dart';
+import 'helper/get_di.dart' as di;
 
-void main() {
+/*void main() {
   // this function makes application always run in portrait mode
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(const MyApp());
+  });
+}*/
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(const MyApp());
@@ -30,12 +40,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: Get.key,
       title: 'Kelolaku Demo',
       debugShowCheckedModeBanner: false,
-      // theme: ThemeData(
-      //   visualDensity: VisualDensity.adaptivePlatformDensity,
-      //   primarySwatch: KelolakuGlobalColor.bgFeedAlt,
-      // ),
       theme: lightKelolaku,
-      // home: Container(),
       initialRoute: RouteHelper.splash,
       getPages: RouteHelper.routes,
       defaultTransition: Transition.topLevel,
