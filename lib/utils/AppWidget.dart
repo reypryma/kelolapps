@@ -358,3 +358,28 @@ class TopCard extends StatelessWidget {
     );
   }
 }
+
+Widget ring(String description) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(150.0),
+          border: Border.all(width: 16.0, color: KelolakuGlobalColor.lightSmoke),
+        ),
+      ),
+      SizedBox(height: 16),
+      Text(description, style: boldTextStyle(color: KelolakuGlobalColor.light70, size: 20), maxLines: 2, textAlign: TextAlign.center)
+    ],
+  );
+}
+
+Widget shareIcon(String iconPath, Color tintColor) {
+  return Padding(
+    padding: EdgeInsets.only(left: 20, right: 20),
+    child: Image.asset(iconPath, width: 28, height: 28, fit: BoxFit.fill),
+  );
+}

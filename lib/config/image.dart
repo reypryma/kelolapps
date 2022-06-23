@@ -23,6 +23,10 @@ class KelolaImage{
 
   static const String bannerCategoryImage = 'assets/kelolapps/banner_menu.svg';
 
-
+  static const t2_twitter = "${PUBLIC_IMAGES_URL}/t2_twitter.png";
+  static const t2_facebook = "${PUBLIC_IMAGES_URL}/t2_facebook.png";
+  static const t2_instagram = "${PUBLIC_IMAGES_URL}/t2_instagram.png";
+  static const t2_linkedin = "${PUBLIC_IMAGES_URL}/t2_linkedin.png";
+  static const t2_whatsup = "${PUBLIC_IMAGES_URL}/t2_whatsapp.png";
 
 }

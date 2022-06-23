@@ -29,5 +29,6 @@ class AppString{
   static const chooseTimeOpen = "Pilih Jam Buka";
   static const chooseTimeClosed = "Pilih Jam Tutup";
   static const extraStoreAvailable = "Masukkan Informasi tambahan, misal  waktu  istirahat";
+  static const shareTo = "Bagikan ke";
 
 }
