@@ -44,7 +44,7 @@ class _SelectionDialogState extends State<SelectionDialog> {
             decoration: InputDecoration(
               filled: true,
               hintText: "Search Country",
-              hintStyle: secondaryTextStyle(),
+              hintStyle: ksecondaryTextStyle(),
               border: InputBorder.none,
             ),
             onChanged: _filterElements,

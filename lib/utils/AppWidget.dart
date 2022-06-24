@@ -9,6 +9,9 @@ import 'package:nb_utils/nb_utils.dart';
 import '../config/kelolaku/constant.dart';
 import 'package:intl/intl.dart';
 
+import '../config/kelolaku/text_style.dart';
+
+
 const applicationMaxWidth = 500.0;
 
 class CustomTheme extends StatelessWidget {
@@ -242,13 +245,13 @@ Widget settingItem(context, String text, {Function? onTap, Widget? detail, Widge
 Widget appBarTitleWidget(context, String title, {Color? color, Color? textColor}) {
   return Container(
     width: MediaQuery.of(context).size.width,
-    height: 60,
+    // height: 60,
     color: color ?? Colors.white,
     child: Row(
       children: <Widget>[
         Text(
           title,
-          style: boldTextStyle(color: color ?? KelolakuGlobalColor.colorPrimaryExtra, size: 20),
+          style: heading3.copyWith(color: textColor ?? KelolakuGlobalColor.dark),
           maxLines: 1,
         ).expand(),
       ],
@@ -256,7 +259,7 @@ Widget appBarTitleWidget(context, String title, {Color? color, Color? textColor}
   );
 }
 
-AppBar appBar(BuildContext context, String title, {List<Widget>? actions, bool showBack = true, Color? color, Color? iconColor, Color? textColor}) {
+AppBar appBar(BuildContext context, String title, {List<Widget>? actions, bool showBack = true, Color? color, Color? iconColor, Color? textColor, double? elevationValue}) {
   return AppBar(
     automaticallyImplyLeading: false,
     backgroundColor: color ?? KelolakuGlobalColor.colorPrimaryExtra,
@@ -270,7 +273,7 @@ AppBar appBar(BuildContext context, String title, {List<Widget>? actions, bool s
         : null,
     title: appBarTitleWidget(context, title, textColor: textColor, color: color),
     actions: actions,
-    elevation: 0.5,
+    elevation: elevationValue ?? 0.5,
   );
 }
 
@@ -383,3 +386,4 @@ Widget shareIcon(String iconPath, Color tintColor) {
     child: Image.asset(iconPath, width: 28, height: 28, fit: BoxFit.fill),
   );
 }
+

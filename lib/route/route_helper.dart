@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:kelolapps/view/screens/LoginScreens.dart';
 import 'package:kelolapps/view/screens/RegisterScreens.dart';
 import 'package:kelolapps/view/screens/StoreRegisterWalkthroughScreen.dart';
+import 'package:kelolapps/view/screens/fragments/main_board/transaction_fragment.dart';
 import 'package:kelolapps/view/screens/other_menu/AccountScreen.dart';
 import 'package:kelolapps/view/screens/other_menu/CourseScreen.dart';
 import 'package:kelolapps/view/screens/other_menu/MembershipScreen.dart';
@@ -42,6 +43,9 @@ class RouteHelper {
   static const String storeRegister = '/register-store';
   static getStoreRegisterRoute() => '$storeRegister';
 
+  static const String storeOrders = '/orders';
+  static String getStoreOrderListRoute() => '$storeOrders';
+
   //Menu Route
   static const String storeReport = '/report';
   static const String storeBuyer = '/membership';
@@ -67,6 +71,10 @@ class RouteHelper {
     GetPage(name: login, page: () => LoginScreen()),
     GetPage(name: signUp, page: () => RegisterScreen()),
     GetPage(name: storeRegister, page: () => StoreRegisterWalkthroughScreen()),
+
+
+    //Transaction
+    GetPage(name: storeOrders, page: () => TransactionFragment()),
 
     //  Other Menu Page
     GetPage(name: storeReport, page: () => ReportScreen()),

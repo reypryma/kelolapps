@@ -4,7 +4,7 @@ import 'package:kelolapps/config/kelolaku/global_style.dart';
 /// Styles
 
 // Bold Text Style
-TextStyle boldTextStyle({
+TextStyle _boldTextStyle({
   int? size,
   Color? color,
   FontWeight? weight,
@@ -37,7 +37,7 @@ TextStyle boldTextStyle({
 }
 
 // Primary Text Style
-TextStyle primaryTextStyle({
+TextStyle kprimaryTextStyle({
   int? size,
   Color? color,
   FontWeight? weight,
@@ -70,7 +70,7 @@ TextStyle primaryTextStyle({
 }
 
 // Secondary Text Style
-TextStyle secondaryTextStyle({
+TextStyle ksecondaryTextStyle({
   int? size,
   Color? color,
   FontWeight? weight,
@@ -128,13 +128,13 @@ TextStyle ff = TextStyle(
     fontWeight: FontWeight.w100,
     fontStyle: FontStyle.italic);
 
-TextStyle large48 = primaryTextStyle(
+TextStyle large48 = kprimaryTextStyle(
   size: 48,
   fontFamily: 'Inter',
   weight: FontWeight.w700,
 );
 
-TextStyle large36 = primaryTextStyle(
+TextStyle large36 = kprimaryTextStyle(
   size: 36,
   fontFamily: 'Inter',
   weight: FontWeight.w700,
@@ -146,19 +146,19 @@ TextStyle large28 = TextStyle(
   fontWeight: FontWeight.w700,
 );
 
-TextStyle heading1 = primaryTextStyle(
+TextStyle heading1 = kprimaryTextStyle(
   size: 24,
   fontFamily: 'Inter',
   weight: FontWeight.w700,
 );
 
-TextStyle heading2 = primaryTextStyle(
+TextStyle heading2 = kprimaryTextStyle(
   size: 20,
   fontFamily: 'Inter',
   weight: FontWeight.w700,
 );
 
-TextStyle heading3 = primaryTextStyle(
+TextStyle heading3 = kprimaryTextStyle(
   size: 16,
   fontFamily: 'Inter',
   weight: FontWeight.w700,
@@ -183,25 +183,25 @@ TextStyle heading5 = TextStyle(
 //     fontWeight: FontWeight.w600,
 //   );
 
-TextStyle title20 = primaryTextStyle(
+TextStyle title20 = kprimaryTextStyle(
   size: 20,
   fontFamily: 'Inter',
   weight: FontWeight.w600,
 );
 
-TextStyle title16 = primaryTextStyle(
+TextStyle title16 = kprimaryTextStyle(
   size: 16,
   fontFamily: 'Inter',
   weight: FontWeight.w600,
 );
 
-TextStyle title14 = primaryTextStyle(
+TextStyle title14 = kprimaryTextStyle(
   size: 14,
   fontFamily: 'Inter',
   weight: FontWeight.w600,
 );
 
-TextStyle title12 = primaryTextStyle(
+TextStyle title12 = kprimaryTextStyle(
   size: 12,
   fontFamily: 'Inter',
   weight: FontWeight.w600,
@@ -278,7 +278,7 @@ TextStyle textSemibold20 = TextStyle(
   fontWeight: FontWeight.w600,
 );
 
-TextStyle textSemibold16 = secondaryTextStyle(
+TextStyle textSemibold16 = ksecondaryTextStyle(
   size: 16,
   fontFamily: 'Manrope',
   weight: FontWeight.w600,
