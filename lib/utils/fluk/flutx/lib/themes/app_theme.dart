@@ -10,7 +10,7 @@
 /// [FxAppThemeType.dark] - Applies all the properties for dark theme
 /// [FxAppThemeType.light] - Applies all the properties for light theme
 
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 enum FxAppThemeType { light, dark, black }

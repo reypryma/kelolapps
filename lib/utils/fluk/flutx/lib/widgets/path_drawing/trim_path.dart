@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 
 enum PathTrimOrigin {
   /// Specifies that trimming should start from the first point in a segment.

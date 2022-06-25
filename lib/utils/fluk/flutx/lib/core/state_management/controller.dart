@@ -1,6 +1,4 @@
 
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'controller_store.dart';
 import 'listenable_mixin.dart';
@@ -8,6 +6,8 @@ import 'listenable_mixin.dart';
 import 'disposable_interface.dart';
 
 abstract class FxController extends DisposableInterface with ListenableMixin, ListNotifierMixin {
+
+
 
   bool save = true;
   late BuildContext context;
@@ -19,7 +19,7 @@ abstract class FxController extends DisposableInterface with ListenableMixin, Li
 
   @protected
   void update() {
-    refresh();
+    changeState();
   }
 
   /// Implement [getTag] on child controller. Which return unique tag.

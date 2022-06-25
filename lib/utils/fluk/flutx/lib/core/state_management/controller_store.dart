@@ -31,6 +31,20 @@ class FxControllerStore {
     _controllers.remove(key);
   }
 
+  static T? pop<T extends FxController>({T? controller, String? key}){
+    if(key==null && controller==null){
+      return null;
+    }
+    key??=controller?.getTag();
+
+    if(_controllers.containsKey(key) && _controllers[key] is T){
+      T controller = _controllers[key] as T;
+      _controllers.remove(key);
+      return controller;
+    }
+    return null;
+  }
+
   static void resetStore() {
     _controllers.clear();
   }

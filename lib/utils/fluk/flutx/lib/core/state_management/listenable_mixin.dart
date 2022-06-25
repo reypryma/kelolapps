@@ -12,7 +12,7 @@ mixin ListNotifierMixin on ListenableMixin {
 
 
   @protected
-  void refresh() {
+  void changeState() {
     // assert(_debugAssertNotDisposed());
 
     /// This debounce the call to update.

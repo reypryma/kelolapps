@@ -4,8 +4,8 @@ import 'package:get/route_manager.dart';
 import 'package:kelolapps/config/image.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
 import 'package:kelolapps/config/kelolaku/text_style.dart';
-import 'package:kelolapps/data/model/menu_model/MenuCategory.dart';
-import 'package:kelolapps/data/model/menu_model/category_model.dart';
+import 'package:kelolapps/data/model/menumodel/MenuCategory.dart';
+import 'package:kelolapps/data/model/menumodel/category_model.dart';
 import 'package:kelolapps/utils/dimensions.dart';
 import 'package:nb_utils/nb_utils.dart';
 

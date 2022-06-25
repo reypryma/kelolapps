@@ -46,7 +46,6 @@ class OrderModel {
   String? updatedAt;
   double? deliveryCharge;
   String? scheduleAt;
-  String? otp;
   String? pending;
   String? accepted;
   String? confirmed;
@@ -87,7 +86,6 @@ class OrderModel {
         this.updatedAt,
         this.deliveryCharge,
         this.scheduleAt,
-        this.otp,
         this.pending,
         this.accepted,
         this.confirmed,
@@ -129,7 +127,6 @@ class OrderModel {
     updatedAt = json['updated_at'];
     deliveryCharge = json['delivery_charge'].toDouble();
     scheduleAt = json['schedule_at'];
-    otp = json['otp'];
     pending = json['pending'];
     accepted = json['accepted'];
     confirmed = json['confirmed'];
@@ -176,7 +173,6 @@ class OrderModel {
     data['updated_at'] = this.updatedAt;
     data['delivery_charge'] = this.deliveryCharge;
     data['schedule_at'] = this.scheduleAt;
-    data['otp'] = this.otp;
     data['pending'] = this.pending;
     data['accepted'] = this.accepted;
     data['confirmed'] = this.confirmed;
@@ -271,6 +267,7 @@ class Customer {
   Customer(
       {this.id,
         this.fName,
+        this.lName,
         this.phone,
         this.email,
         this.createdAt,
@@ -279,6 +276,7 @@ class Customer {
   Customer.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     fName = json['f_name'];
+    fName = json['l_name'];
     phone = json['phone'];
     image = json['image'];
     createdAt = json['created_at'];
