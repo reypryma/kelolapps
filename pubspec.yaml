@@ -39,6 +39,7 @@ dependencies:
   flutter_speed_dial: ^6.0.0
   dots_indicator: ^2.1.0
   flutter_svg: ^1.1.0
+  badges: ^2.0.2
 
   #CONNECTIVITY
   http: ^0.13.4

@@ -1,5 +1,7 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
+import 'package:kelolapps/config/kelolaku/text_style.dart';
 
 Widget createDefaultLabel(context, [String payStatus = "Belum Dibayar"]){
   return Container(
@@ -30,3 +32,19 @@ BoxDecoration boxDecorations({double radius = 8, Color color = Colors.transparen
     borderRadius: BorderRadius.all(Radius.circular(radius)),
   );
 }
+
+Badge badgeLevel({String? title, TextStyle? textBadgeStyle, double? badgeRadius}){
+  return Badge(
+    badgeColor: KelolakuGlobalColor.green,
+    borderRadius: BorderRadius.circular(20),
+    padding: EdgeInsets.all(badgeRadius ?? 3),
+    shape: BadgeShape.square,
+    badgeContent: Text(
+      title!, style: textBadgeStyle ?? title12.copyWith(color: KelolakuGlobalColor.light70),
+    ));
+}
+
+// Chip(
+//   label: Text(AppString.mandatory, style: title12.copyWith(color: KelolakuGlobalColor.light70)),
+//   backgroundColor: KelolakuGlobalColor.green,
+// ),

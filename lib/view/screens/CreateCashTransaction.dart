@@ -1,8 +1,12 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutx/flutx.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
 import 'package:kelolapps/config/kelolaku/text_style.dart';
+import 'package:kelolapps/helper/reusable_widget.dart';
+import 'package:kelolapps/utils/app_strings.dart';
 import 'package:kelolapps/utils/dimensions.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class CreateCashTransaction extends StatefulWidget {
   const CreateCashTransaction({Key? key}) : super(key: key);
@@ -13,6 +17,8 @@ class CreateCashTransaction extends StatefulWidget {
 
 class _CreateCashTransactionState extends State<CreateCashTransaction> {
   int chooseCashTransactionIndex = 0;
+  TextEditingController _etAmountCash = TextEditingController();
+  TextEditingController _etTitleCash = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +44,11 @@ class _CreateCashTransactionState extends State<CreateCashTransaction> {
           // padding: EdgeInsets.symmetric(horizontal: Dimensions.MARGIN_SIZE_GRID_4),
           // height: 55,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             // mainAxisSize: MainAxisSize.min,
             children: [
+              SizedBox(height: Dimensions.VERTICAL_SIZE_8,),
               Row(
                   // crossAxisAlignment: CrossAxisAlignment.stretch,
                 // mainAxisAlignment: MainAxisAlignment.start,
@@ -62,10 +69,150 @@ class _CreateCashTransactionState extends State<CreateCashTransaction> {
                         title: "Kas Keluar",
                         address: "Untuk transaksi bersifat pengeluaran"),
                   ),
+
                 ],
+              ),
+              SizedBox(height: Dimensions.VERTICAL_SIZE_8,),
+              Container(
+                  margin: EdgeInsets.only(top: 8, bottom: 8),
+                  decoration: boxDecorations(bgColor: KelolakuGlobalColor.light70, showShadow: true),
+                  padding: EdgeInsets.only(top: 10, left: Dimensions.MARGIN_SIZE_GRID_4, right: Dimensions.MARGIN_SIZE_GRID_4),
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text('Jumlah Uang', style: heading2.copyWith(color: KelolakuGlobalColor.dark40),),
+                          8.width,
+                          badgeLevel(title: AppString.mandatory)
+                        ],
+                      ),
+                      TextField(
+                        controller: _etAmountCash,
+                        onSubmitted: (value) {
+                          setState(() {
+                            _etAmountCash.text = '';
+                          });
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'masukkan nominal uang',
+                          isDense: true,
+                        ),
+                        keyboardType: TextInputType.number,
+                      ),
+                      Dimensions.VERTICAL_SIZE_32.toInt().height,
+                      Row(
+                        children: [
+                          Text('Judul Transaksi', style: heading2.copyWith(color: KelolakuGlobalColor.dark40),),
+                          8.width,
+                          badgeLevel(title: AppString.mandatory)
+                        ],
+                      ),
+                      TextField(
+                        controller: _etTitleCash,
+                        onSubmitted: (value) {
+                          setState(() {
+                            _etTitleCash.text = '';
+                          });
+                        },
+                        decoration: const InputDecoration(
+                          hintText: 'Transaksi untuk Apa?',
+                          isDense: true,
+                        ),
+                      ),
+                      Dimensions.VERTICAL_SIZE_32.toInt().height,
+                      Align(
+                        alignment: Alignment.topLeft,
+                          child: Text('Transaksi Untuk', style: heading2.copyWith(color: KelolakuGlobalColor.dark40))),
+                      Dimensions.VERTICAL_SIZE_16.toInt().height,
+                      TextFormField(
+                        style: textRegular12.copyWith(
+                            color: KelolakuGlobalColor.light60
+                        ),
+                        decoration: InputDecoration(
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          suffix: Icon(
+                            Icons.group_add_outlined,
+                            color: Colors.grey,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                            borderSide: BorderSide(color: KelolakuGlobalColor.colorPrimaryExtra),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                            borderSide: BorderSide(width: 1, color: KelolakuGlobalColor.lightBorderInput),
+                          ),
+                          labelText: "Kepada Siapa Transaksi Dilakukan",
+                          hintMaxLines: 2,
+                          labelStyle: textRegular16.copyWith(
+                              color: KelolakuGlobalColor.dark40
+                          ),
+                          alignLabelWithHint: true,
+                        ),
+                        maxLines: 5,
+                        // cursorColor: blackColor,
+                        keyboardType: TextInputType.multiline,
+                        validator: (s) {
+                          if (s!.trim().isEmpty) return 'Masukkan Dekripsi Toko misal tentang usaha \n dan produk yang tersedia';
+                          return null;
+                        },
+                      ),
+                      Dimensions.VERTICAL_SIZE_32.toInt().height,
+                    ],
+                  )
+              ),
+              Dimensions.VERTICAL_SIZE_16.toInt().height,
+              Container(
+                  decoration: boxDecorations(bgColor: KelolakuGlobalColor.light70, showShadow: true),
+                padding: EdgeInsets.only(left: Dimensions.MARGIN_SIZE_GRID_4, right: Dimensions.MARGIN_SIZE_GRID_4, top: Dimensions.VERTICAL_SIZE_16, bottom: Dimensions.VERTICAL_SIZE_16),
+                child:  TextFormField(
+                  style: textRegular12.copyWith(
+                      color: KelolakuGlobalColor.light60
+                  ),
+                  decoration: InputDecoration(
+                    // floatingLabelBehavior: FloatingLabelBehavior.never,
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                      borderSide: BorderSide(color: KelolakuGlobalColor.colorPrimaryExtra),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                      borderSide: BorderSide(width: 1, color: KelolakuGlobalColor.lightBorderInput),
+                    ),
+                    labelText: "Masukkan Dekripsi Tambahan",
+                    hintMaxLines: 2,
+                    labelStyle: textRegular16.copyWith(
+                        color: KelolakuGlobalColor.dark40
+                    ),
+                    alignLabelWithHint: true,
+                  ),
+                  maxLines: 5,
+                  // cursorColor: blackColor,
+                  keyboardType: TextInputType.multiline,
+                ),
               )
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar:
+      Padding(
+        padding: const EdgeInsets.fromLTRB(Dimensions.MARGIN_SIZE_GRID_4, Dimensions.VERTICAL_SIZE_16, Dimensions.MARGIN_SIZE_GRID_4, Dimensions.BOTTOM_HEIGHT_GRID),
+        child: AppButton(
+          width: MediaQuery.of(context).size.width,
+          height: 51,
+          color: KelolakuGlobalColor.colorPrimaryLogo,
+          //context.cardColor,
+          text: "Buat Transaksi Sekarang",
+          textColor: Colors.white,
+          onTap: () {
+
+          },
+          shapeBorder:
+          RoundedRectangleBorder(borderRadius: radius(defaultRadius)),
+          padding: const EdgeInsets.all(16),
         ),
       ),
     );
@@ -85,7 +232,7 @@ class _CreateCashTransactionState extends State<CreateCashTransaction> {
         height: 55,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(5)),
-            color: isSelected ? index == 0 ? KelolakuGlobalColor.green : KelolakuGlobalColor.orange : KelolakuGlobalColor.dark30,
+            color: isSelected ? index == 0 ? KelolakuGlobalColor.green : KelolakuGlobalColor.orange : KelolakuGlobalColor.bgFeedAlt,
         ),
                 // borderRadiusAll: 8,
         child: Row(
@@ -98,7 +245,7 @@ class _CreateCashTransactionState extends State<CreateCashTransaction> {
                         shape: BoxShape.circle,
                         color: index == 0
                             ? KelolakuGlobalColor.green
-                            : index == 1 ? KelolakuGlobalColor.orange : KelolakuGlobalColor.dark60),
+                            : index == 1 ? KelolakuGlobalColor.orange : KelolakuGlobalColor.dark40),
                     child: Icon(
                       Icons.check_circle_outline,
                       color: index == 0
@@ -112,12 +259,16 @@ class _CreateCashTransactionState extends State<CreateCashTransaction> {
                     // height: 26,
                     // width: 26,
               padding: EdgeInsets.all(8),
-              margin: EdgeInsets.only(right: 8, left: 8),
+              // margin: EdgeInsets.only(right: 8, left: 8),
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: KelolakuGlobalColor.colorPrimaryExtra)),
-                  ),
-            // FxSpacing.width(isSelected ? 16 : 20),
+                    ),
+              child: const Icon(
+                Icons.circle_outlined,
+                color: KelolakuGlobalColor.dark60
+                // size: 14,
+              ),
+            ),
             Container(
               alignment: Alignment.center,
               child: Column(

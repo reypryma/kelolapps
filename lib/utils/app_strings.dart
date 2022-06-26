@@ -33,4 +33,6 @@ class AppString{
 
   static String update = "Perbarui";
 
+  static String mandatory = "Wajib";
+
 }
