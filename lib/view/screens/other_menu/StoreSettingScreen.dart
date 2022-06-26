@@ -26,7 +26,6 @@ class _StoreSettingScreenState extends State<StoreSettingScreen> {
             },
             child: const Icon(Icons.arrow_back_ios, color: KelolakuGlobalColor.dark, size: 20),
           ),
-
         ),
         body: SafeArea(child: Container()));
   }

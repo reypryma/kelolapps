@@ -24,6 +24,7 @@ class Dimensions {
   static const double MARGIN_SIZE_GRID_6 = 24.0;
   static const double MARGIN_SIZE_GRID_4 = 25.0;
   //Row
+  static const double VERTICAL_SIZE_4 = 4;
   static const double VERTICAL_SIZE_8 = 8;
   static const double VERTICAL_SIZE_16 = 16;
   static const double VERTICAL_SIZE_32 = 32;

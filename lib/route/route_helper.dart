@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:kelolapps/view/screens/CreateCashTransaction.dart';
 import 'package:kelolapps/view/screens/LoginScreens.dart';
 import 'package:kelolapps/view/screens/RegisterScreens.dart';
 import 'package:kelolapps/view/screens/StoreRegisterWalkthroughScreen.dart';
@@ -65,6 +66,13 @@ class RouteHelper {
   static String getCampaignRoute() => '$campaign';
   static String getAccountRoute() => '$account';
 
+  //Transaction
+  static const String createTransaction = '/create-transaction';
+  static const String updateTransaction = '/update-transaction';
+
+  static String getCreateTransactionRoute() => '$createTransaction';
+  static String getUpdateTransactionRoute() => '$updateTransaction';
+
   static List<GetPage> routes = [
     // GetPage(name: initial, page: () => DashboardScreen(pageIndex: 0)),
     GetPage(name: splash, page: () => const SplashScreenPage()),
@@ -75,6 +83,8 @@ class RouteHelper {
 
     //Transaction
     GetPage(name: storeOrders, page: () => TransactionFragment()),
+    GetPage(name: createTransaction, page: () => CreateCashTransaction()),
+
 
     //  Other Menu Page
     GetPage(name: storeReport, page: () => ReportScreen()),

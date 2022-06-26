@@ -31,4 +31,6 @@ class AppString{
   static const extraStoreAvailable = "Masukkan Informasi tambahan, misal  waktu  istirahat";
   static const shareTo = "Bagikan ke";
 
+  static String update = "Perbarui";
+
 }
