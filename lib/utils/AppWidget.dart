@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
@@ -387,3 +389,57 @@ Widget shareIcon(String iconPath, Color tintColor) {
   );
 }
 
+List<IconData> _iconList = [
+  Icons.star_rate,
+  Icons.code,
+  Icons.adb,
+  Icons.android,
+  Icons.select_all,
+  Icons.eco,
+  Icons.label_important,
+  Icons.album,
+  Icons.scatter_plot,
+  Icons.memory,
+  Icons.audiotrack,
+  Icons.miscellaneous_services,
+  Icons.whatshot
+];
+
+Random _random = Random();
+
+// create random color for polylines
+Color _getColor() {
+  return Color.fromARGB(
+      255, _random.nextInt(255), _random.nextInt(255), _random.nextInt(255));
+}
+
+Widget screenDetailList({required BuildContext context, required String title, required StatefulWidget page}){
+  Color _color = _getColor();
+  return GestureDetector(
+    behavior: HitTestBehavior.translucent,
+    onTap: (){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+    },
+    child: Container(
+      margin: EdgeInsets.symmetric(vertical: 8),
+      child: Card(
+        elevation: 0.5,
+        child: Container(
+          margin: EdgeInsets.all(18),
+          child: Row(
+            children: [
+              Icon(_iconList[_random.nextInt(_iconList.length)], color: _color, size: 26),
+              SizedBox(width: 24),
+              Expanded(
+                child: Text(title, style: TextStyle(
+                    fontSize: 16, color: black, fontWeight: FontWeight.w500
+                )),
+              ),
+              Icon(Icons.chevron_right, size: 30, color: _color),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}

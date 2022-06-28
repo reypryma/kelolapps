@@ -37,6 +37,7 @@ class _TransactionFragmentState extends State<TransactionFragment> {
           color: KelolakuGlobalColor.colorPrimaryLogo,
           textColor: KelolakuGlobalColor.light70),
       body: SafeArea(
+
         child: Column(
           children: [
             Container(

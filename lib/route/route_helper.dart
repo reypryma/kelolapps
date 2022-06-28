@@ -3,10 +3,12 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:kelolapps/view/screens/CreateCashTransaction.dart';
+import 'package:kelolapps/view/screens/CreateCashTransactionScreen.dart';
 import 'package:kelolapps/view/screens/LoginScreens.dart';
 import 'package:kelolapps/view/screens/RegisterScreens.dart';
 import 'package:kelolapps/view/screens/StoreRegisterWalkthroughScreen.dart';
+import 'package:kelolapps/view/screens/digital_shop/DigitalShopHomeScreen.dart';
+import 'package:kelolapps/view/screens/digital_shop/DigitalShopInfoScreen.dart';
 import 'package:kelolapps/view/screens/fragments/main_board/transaction_fragment.dart';
 import 'package:kelolapps/view/screens/other_menu/AccountScreen.dart';
 import 'package:kelolapps/view/screens/other_menu/CourseScreen.dart';
@@ -73,7 +75,19 @@ class RouteHelper {
   static String getCreateTransactionRoute() => '$createTransaction';
   static String getUpdateTransactionRoute() => '$updateTransaction';
 
+  //Digital-Shop
+  static const String digitalStore = '/digital-store';
+  static String getDigitalStore() => '$digitalStore';
+
+  static const String viewDigitalStoreInfo = '/view-store';
+  static  String getViewDigitalStoreInfo = '$viewDigitalStoreInfo';
+
+
   static List<GetPage> routes = [
+    //Digital Store
+    GetPage(name: digitalStore, page: ()=> DigitalShopHomeScreen()),
+    GetPage(name: viewDigitalStoreInfo, page: ()=> DigitalShopInfoScreen()),
+
     // GetPage(name: initial, page: () => DashboardScreen(pageIndex: 0)),
     GetPage(name: splash, page: () => const SplashScreenPage()),
     GetPage(name: login, page: () => LoginScreen()),

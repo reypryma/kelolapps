@@ -29,4 +29,5 @@ class KelolaImage{
   static const t2_linkedin = "${PUBLIC_IMAGES_URL}/t2_linkedin.png";
   static const t2_whatsup = "${PUBLIC_IMAGES_URL}/t2_whatsapp.png";
 
+  static const bannerStore = "${STORE_IMAGES_URL}/restaurant_image.png";
 }

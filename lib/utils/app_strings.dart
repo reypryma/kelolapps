@@ -35,4 +35,11 @@ class AppString{
 
   static String mandatory = "Wajib";
 
+
+  static String storeName = "Toko Maju Makmur";
+
+  static var open = "Buka";
+
+  static var closed = "Tutup";
+
 }

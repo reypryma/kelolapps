@@ -67,6 +67,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
+      resizeToAvoidBottomInset: false,
       bottomNavigationBar: _bottomTab(),
       body: Center(child: _pages.elementAt(_selectedIndex)),
     ));
