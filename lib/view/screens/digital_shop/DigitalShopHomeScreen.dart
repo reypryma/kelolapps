@@ -36,7 +36,7 @@ class _DigitalShopHomeState extends State<DigitalShopHomeScreen> {
             backgroundColor: DStoreGlobalColor.colorDigitalStore,
             automaticallyImplyLeading: false,
             bottom: PreferredSize(
-              preferredSize: Size(context.width(), 0),
+              preferredSize: Size(context.width(), context.height()),
               child: Container(
                 height: sliverheight,
                 child: Stack(
@@ -123,7 +123,85 @@ class _DigitalShopHomeState extends State<DigitalShopHomeScreen> {
           flexibleSpace: FlexibleSpaceBar(
             collapseMode: CollapseMode.parallax,
             background: Container(
-
+              child:  Stack(
+                children: [
+                  FittedBox(
+                      child: commonCachedNetworkImage(KelolaImage.bannerStore,
+                          height: sliverheight,
+                          width: context.width(),
+                          fit: BoxFit.fill,
+                          radius: 0)),
+                  // .cornerRadiusWithClipRRect(16)
+                  Container(
+                    height: sliverheight,
+                    width: context.width(),
+                    padding: EdgeInsets.only(
+                        left: Dimensions.MARGIN_SIZE_GRID_8,
+                        right: Dimensions.MARGIN_SIZE_GRID_8,
+                        top: Dimensions.VERTICAL_SIZE_16),
+                    decoration: boxDecorationWithRoundedCorners(
+                        borderRadius: radius(0),
+                        gradient: LinearGradient(colors: [
+                          KelolakuGlobalColor.dark60.withOpacity(0.4),
+                          KelolakuGlobalColor.dark60.withOpacity(0.5)
+                        ])),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppString.storeName,
+                              style: large28.copyWith(
+                                  color: KelolakuGlobalColor.light70),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 8),
+                              child: Container(
+                                padding: EdgeInsets.only(
+                                    left: 8, right: 8, top: 6, bottom: 6),
+                                decoration: boxDecorationWithRoundedCorners(
+                                    backgroundColor: isOpen
+                                        ? KelolakuGlobalColor.green.withOpacity(.7)
+                                        : KelolakuGlobalColor.dark40,
+                                    borderRadius: BorderRadius.circular(20)
+                                ),
+                                child: Text("Toko ${AppString.open}".toUpperCase(),
+                                    style: textRegular14.copyWith(color: white)),
+                              ),
+                            ),
+                            16.width,
+                            AppButton(
+                              color: KelolakuGlobalColor.light60,
+                              padding: EdgeInsets.only( left: 8, right: 8, top: 6, bottom: 6),
+                              onTap: () {
+                                //
+                              },
+                              elevation: 0,
+                              shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Icon(Icons.library_books_rounded, color:  KelolakuGlobalColor.dark70),
+                                  4.width,
+                                  Text("Informasi Toko", style: textSemibold14.copyWith(color: KelolakuGlobalColor.dark70)),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

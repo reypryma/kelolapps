@@ -5,36 +5,44 @@ List<ProductCategoryModel> getCategoryList(){
   List<ProductCategoryModel> categoryData =[
     ProductCategoryModel(
       id: 1,
-      name: 'Fashion',
+      name: 'Izakaya',
     ),
     ProductCategoryModel(
       id: 2,
-      name: 'Smartphone & Tablets',
+      name: 'Sashimi',
     ),
     ProductCategoryModel(
       id: 3,
-      name: 'Electronic',
+      name: 'Sea Food',
     ),
     ProductCategoryModel(
       id: 4,
-      name: 'Otomotif',
+      name: 'Beverages',
     ),
     ProductCategoryModel(
       id: 5,
-      name: 'Sport',
+      name: 'Minuman',
     ),
     ProductCategoryModel(
       id: 6,
-      name: 'Food',
+      name: 'Signature',
     ),
     ProductCategoryModel(
       id: 7,
-      name: 'Voucher\nGame',
+      name: 'Gudeg\nGado',
     ),
     ProductCategoryModel(
       id: 8,
-      name: 'Health & Care',
+      name: 'Sehati',
     ),
   ];
+  return categoryData;
+}
+
+List<bool> getInitialSelectedCategoryCount(){
+  List<bool> categoryData = [];
+  for(int i = 0 ; i < getCategoryList().length ; i++){
+    categoryData.add(false);
+  }
   return categoryData;
 }

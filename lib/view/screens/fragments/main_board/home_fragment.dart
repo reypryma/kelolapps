@@ -9,6 +9,7 @@ import 'package:kelolapps/route/route_helper.dart';
 import 'package:kelolapps/utils/AppWidget.dart';
 import 'package:kelolapps/utils/app_strings.dart';
 import 'package:kelolapps/utils/dimensions.dart';
+import 'package:kelolapps/view/screens/digital_shop/DigitalShopHomeScreen2.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class HomeFragment extends StatefulWidget {
@@ -110,10 +111,11 @@ class _HomeFragmentState extends State<HomeFragment> {
                                             children: [
                                               InkWell(
                                                 onTap: () {
-                                                  Get.toNamed(
-                                                      RouteHelper.digitalStore);
+                                                  Get.to(() =>
+                                                      DigitalStoreHomeScreen());
                                                 },
                                                 child: Text(
+                                                    //Its inside PreferedSize
                                                     'https://kelolaku.com/majumakmur',
                                                     style: textRegular16.copyWith(
                                                         color:

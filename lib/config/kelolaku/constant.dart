@@ -4,6 +4,8 @@ const String PUBLIC_IMAGES_URL = 'assets/public_image';
 const String KELOLAPPS_IMAGES_URL = 'assets/kelolapps';
 const String STORE_IMAGES_URL = 'assets/store_image';
 
+const String GLOBAL_URL = 'https://devkit.ijteknologi.com';
+
 const String appIcon = '${PUBLIC_IMAGES_URL}/ic_home.png';
 
 const String APP_NAME = 'Kelolaku';
