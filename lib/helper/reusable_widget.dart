@@ -4,6 +4,7 @@ import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/route_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
 import 'package:kelolapps/config/kelolaku/text_style.dart';
@@ -260,3 +261,32 @@ class GlobalStyle {
   1.90; // higher is more longer
 }
 
+Widget createCoupon(BuildContext context, String couponRoute, {String? textFill, Color? bgColor} ){
+  return GestureDetector(
+    behavior: HitTestBehavior.translucent,
+    onTap: (){
+        Get.toNamed(couponRoute);
+    },
+    child: Container(
+      padding: EdgeInsets.all(12),
+      margin: EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+          color: bgColor ?? KelolakuGlobalColor.colorPrimaryExtra,
+          borderRadius: BorderRadius.circular(5)
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              child: Text(
+                textFill ?? 'Ada Promo untuk Kamu',
+                style: TextStyle(fontSize: 14, color: Color(0xffffffff), fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          Icon(Icons.local_offer, color: Colors.white)
+        ],
+      ),
+    ),
+  );
+}

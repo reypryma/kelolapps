@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:kelolapps/config/digitalstore/dshop_color_style.dart';
@@ -10,6 +8,7 @@ import 'package:kelolapps/data/model/productmodel/CategoryData.dart';
 import 'package:kelolapps/data/model/productmodel/ProductData.dart';
 import 'package:kelolapps/data/model/productmodel/category_model.dart';
 import 'package:kelolapps/helper/reusable_widget.dart';
+import 'package:kelolapps/route/route_helper.dart';
 import 'package:kelolapps/utils/AppWidget.dart';
 import 'package:kelolapps/utils/app_strings.dart';
 import 'package:kelolapps/utils/dimensions.dart';
@@ -161,7 +160,12 @@ class _DigitalStoreHomeScreenState extends State<DigitalStoreHomeScreen> {
                     height: kToolbarHeight,
                     decoration: BoxDecoration(
                       color: KelolakuGlobalColor.light70,
-                      boxShadow: [BoxShadow(color: KelolakuGlobalColor.grayFed.withOpacity(0.3), offset: Offset(0.0, 1.0), blurRadius: 2.0)],
+                      boxShadow: [
+                        BoxShadow(
+                            color: KelolakuGlobalColor.grayFed.withOpacity(0.3),
+                            offset: Offset(0.0, 1.0),
+                            blurRadius: 2.0)
+                      ],
                     ),
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -206,29 +210,38 @@ class _DigitalStoreHomeScreenState extends State<DigitalStoreHomeScreen> {
             child: Align(
               alignment: Alignment.topLeft,
               child: SingleChildScrollView(
-                child: Container(
-                    child: CustomScrollView(
+                child: Column(
+                  children: [
+                    _searchProduct(),
+                    // SizedBox(
+                    //   height: Dimensions.VERTICAL_SIZE_16,
+                    // ),
+                    createCoupon(context, RouteHelper.getViewDigitalStorePromo,
+                        bgColor: DStoreGlobalColor.colorDigitalStore),
+                    CustomScrollView(
                         shrinkWrap: true,
                         primary: false,
                         slivers: <Widget>[
                           SliverPadding(
                             padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
                             sliver: SliverGrid(
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 mainAxisSpacing: 8,
                                 crossAxisSpacing: 8,
                                 childAspectRatio: GlobalStyle.gridDelegateRatio,
                               ),
                               delegate: SliverChildBuilderDelegate(
-                                    (BuildContext context, int index) {
+                                (BuildContext context, int index) {
                                   return _buildRecomendedProductCard(index);
                                 },
                                 childCount: recomendedProductData.length,
                               ),
                             ),
                           ),
-                        ]),
+                        ])
+                  ],
                 ),
               ),
             ),
@@ -249,7 +262,7 @@ class _DigitalStoreHomeScreenState extends State<DigitalStoreHomeScreen> {
             Text(
               "Anda memiliki Keranjang ",
               style:
-              primaryTextStyle(color: KelolakuGlobalColor.dark, size: 18),
+                  primaryTextStyle(color: KelolakuGlobalColor.dark, size: 18),
               textAlign: TextAlign.center,
             ).expand(),
             Badge(
@@ -302,8 +315,53 @@ class _DigitalStoreHomeScreenState extends State<DigitalStoreHomeScreen> {
     super.dispose();
   }
 
-  Widget _buildRecomendedProductCard(index){
-    final double boxImageSize = ((MediaQuery.of(context).size.width)-24)/2-12;
+  Widget _searchProduct() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: Dimensions.MARGIN_SIZE_GRID_8),
+          padding: EdgeInsets.symmetric(vertical: 16),
+          child: TextFormField(
+            autocorrect: true,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+              hintText: 'Cari Produk dari Toko',
+              prefixIcon: Icon(Icons.search, color: KelolakuGlobalColor.dark40),
+              hintStyle: TextStyle(color: KelolakuGlobalColor.dark40),
+              filled: true,
+              fillColor: context.cardColor,
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                    color: KelolakuGlobalColor.dark, width: 0.5),
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                borderSide:
+                    BorderSide(color: DStoreGlobalColor.colorDigitalStore, width: 0.5),
+              ),
+            ),
+          ),
+        ).expand(),
+        // 8.width,
+        // Container(
+        //   padding: EdgeInsets.all(8),
+        //   margin: EdgeInsets.only(right: 14),
+        //   height: 45,
+        //   child: Icon(Icons.filter_list, color: Colors.grey),
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.all(Radius.circular(10)),
+        //     border: Border.all(color: KelolakuGlobalColor.grayFed, width: 0.5),
+        //   ),
+        // ),
+      ],
+    );
+  }
+
+  Widget _buildRecomendedProductCard(index) {
+    final double boxImageSize =
+        ((MediaQuery.of(context).size.width) - 24) / 2 - 12;
     return Container(
       child: Card(
         shape: RoundedRectangleBorder(
@@ -313,14 +371,28 @@ class _DigitalStoreHomeScreenState extends State<DigitalStoreHomeScreen> {
         color: Colors.white,
         child: GestureDetector(
           behavior: HitTestBehavior.translucent,
-          onTap: (){
-
-          },
+          onTap: () {},
           child: Column(
             children: <Widget>[
-              ClipRRect(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-                  child: buildCacheNetworkImage(width: boxImageSize, height: boxImageSize, url: recomendedProductData[index].image)
+              Stack(
+                children: [
+                  ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10)),
+                      child: buildCacheNetworkImage(
+                          width: boxImageSize,
+                          height: boxImageSize,
+                          url: recomendedProductData[index].image)),
+                  Positioned(
+                      right: 16,
+                      top: 16,
+                      child: Icon(
+                        Icons.favorite_border,
+                        color: white,
+                        size: 22,
+                      ).onTap(() {})),
+                ],
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(8, 8, 8, 8),
@@ -330,16 +402,21 @@ class _DigitalStoreHomeScreenState extends State<DigitalStoreHomeScreen> {
                   children: [
                     Text(
                       recomendedProductData[index].name,
-                      style: title20, maxLines: 2, overflow: TextOverflow.ellipsis,
+                      style: title20,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Container(
-                      margin: EdgeInsets.only(top:5),
+                      margin: const EdgeInsets.only(top: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Rp ${recomendedProductData[index].price.toString().formatRupiah()}',
-                            style: heading1.copyWith(color: DStoreGlobalColor.colorDigitalStore),
-                          )],
+                          Text(
+                            'Rp ${recomendedProductData[index].price.toString().formatRupiah()}',
+                            style: heading1.copyWith(
+                                color: DStoreGlobalColor.colorDigitalStore),
+                          )
+                        ],
                       ),
                     ),
                   ],
@@ -352,4 +429,3 @@ class _DigitalStoreHomeScreenState extends State<DigitalStoreHomeScreen> {
     );
   }
 }
-

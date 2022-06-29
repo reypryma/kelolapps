@@ -7,8 +7,9 @@ import 'package:kelolapps/view/screens/CreateCashTransactionScreen.dart';
 import 'package:kelolapps/view/screens/LoginScreens.dart';
 import 'package:kelolapps/view/screens/RegisterScreens.dart';
 import 'package:kelolapps/view/screens/StoreRegisterWalkthroughScreen.dart';
-import 'package:kelolapps/view/screens/digital_shop/DigitalShopHomeScreen.dart';
+import 'package:kelolapps/view/screens/digital_shop/DigitalShopHomeScreen2.dart';
 import 'package:kelolapps/view/screens/digital_shop/DigitalShopInfoScreen.dart';
+import 'package:kelolapps/view/screens/digital_shop/DigitalShopPromoScreen.dart';
 import 'package:kelolapps/view/screens/fragments/main_board/transaction_fragment.dart';
 import 'package:kelolapps/view/screens/other_menu/AccountScreen.dart';
 import 'package:kelolapps/view/screens/other_menu/CourseScreen.dart';
@@ -79,14 +80,17 @@ class RouteHelper {
   static const String digitalStore = '/digital-store';
   static String getDigitalStore() => '$digitalStore';
 
-  static const String viewDigitalStoreInfo = '/view-store';
+  static const String viewDigitalStoreInfo = '/view-store-info';
   static  String getViewDigitalStoreInfo = '$viewDigitalStoreInfo';
 
+  static const String viewPromoStoreInfo = '/view-promo';
+  static  String getViewDigitalStorePromo = '$viewPromoStoreInfo';
 
   static List<GetPage> routes = [
     //Digital Store
-    GetPage(name: digitalStore, page: ()=> DigitalShopHomeScreen()),
+    GetPage(name: digitalStore, page: ()=> DigitalStoreHomeScreen()),
     GetPage(name: viewDigitalStoreInfo, page: ()=> DigitalShopInfoScreen()),
+    GetPage(name: viewPromoStoreInfo, page: ()=> DigitalShopPromoScreen()),
 
     // GetPage(name: initial, page: () => DashboardScreen(pageIndex: 0)),
     GetPage(name: splash, page: () => const SplashScreenPage()),

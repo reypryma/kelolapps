@@ -78,6 +78,7 @@ flutter:
     - assets/public_image/
     - assets/kelolapps/
     - assets/store_image/
+    - assets/promo/
 
     # Heading Fonts
     - assets/fonts/inter/
