@@ -9,7 +9,7 @@ List<ProductModel> getProductList(){
   List<ProductModel> categoryData = [
     ProductModel(
         id: 8,
-        restaurantName: "Chicken Specialties",
+        description: "Chicken Specialties",
         name: "Chicken Rice Teriyaki",
         image: GLOBAL_URL+"/assets/images/apps/food_delivery/food/8.jpg",
         price: 50000,
@@ -19,7 +19,7 @@ List<ProductModel> getProductList(){
         location: "Liberty Avenue", categoryModel: categories.elementAt(0)),
     ProductModel(
         id: 6,
-        restaurantName: "Bread and Cookies",
+        description: "Bread and Cookies",
         name: "Delicious Croissant",
         image: GLOBAL_URL+"/assets/images/apps/food_delivery/food/6.jpg",
         price: 75000,
@@ -30,7 +30,7 @@ List<ProductModel> getProductList(){
     ),
     ProductModel(
         id: 7,
-        restaurantName: "Taco Salad Beef Classic",
+        description: "Taco Salad Beef Classic",
         name: "Awesome Health",
         image: GLOBAL_URL+"/assets/images/apps/food_delivery/food/7.jpg",
         price: 120000,
@@ -41,7 +41,7 @@ List<ProductModel> getProductList(){
     ),
     ProductModel(
         id: 5,
-        restaurantName: "Italian Food",
+        description: "Italian Food",
         name: "Chicken Penne With Tomato",
         image: GLOBAL_URL+"/assets/images/apps/food_delivery/food/5.jpg",
         price: 65000,
@@ -52,7 +52,7 @@ List<ProductModel> getProductList(){
     ),
     ProductModel(
         id: 4,
-        restaurantName: "Steam Boat Lovers",
+        description: "Steam Boat Lovers",
         name: "Seafood shabu-shabu",
         image: GLOBAL_URL+"/assets/images/apps/food_delivery/food/4.jpg",
         price: 30000,
@@ -63,7 +63,7 @@ List<ProductModel> getProductList(){
     ),
     ProductModel(
         id: 3,
-        restaurantName: "Salad Stop",
+        description: "Salad Stop",
         name: "Sesame Salad",
         image: GLOBAL_URL+"/assets/images/apps/food_delivery/food/3.jpg",
         price: 20000,
@@ -74,7 +74,7 @@ List<ProductModel> getProductList(){
     ),
     ProductModel(
         id: 2,
-        restaurantName: "Beef Lovers",
+        description: "Beef Lovers",
         name: "Beef Yakiniku",
         image: GLOBAL_URL+"/assets/images/apps/food_delivery/food/2.jpg",
         price: 15000,
@@ -85,7 +85,7 @@ List<ProductModel> getProductList(){
     ),
     ProductModel(
         id: 1,
-        restaurantName: "Mr. Hungry",
+        description: "Mr. Hungry",
         name: "Hainam Chicken Rice",
         image: GLOBAL_URL+"/assets/images/apps/food_delivery/food/1.jpg",
         price: 100000,

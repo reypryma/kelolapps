@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:kelolapps/config/digitalstore/dshop_color_style.dart';
 import 'package:kelolapps/config/image.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
@@ -13,6 +14,7 @@ import 'package:kelolapps/utils/AppWidget.dart';
 import 'package:kelolapps/utils/app_strings.dart';
 import 'package:kelolapps/utils/dimensions.dart';
 import 'package:kelolapps/utils/status_bar.dart';
+import 'package:kelolapps/view/screens/digital_shop/DigitalProductDetailScreen.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class DigitalStoreHomeScreen extends StatefulWidget {
@@ -371,7 +373,11 @@ class _DigitalStoreHomeScreenState extends State<DigitalStoreHomeScreen> {
         color: Colors.white,
         child: GestureDetector(
           behavior: HitTestBehavior.translucent,
-          onTap: () {},
+          onTap: () {
+            Get.toNamed(RouteHelper.getProductDetailsRoute,
+              arguments: DigitalProductDetailScreen(productModel: recomendedProductData[index]),
+            );
+          },
           child: Column(
             children: <Widget>[
               Stack(

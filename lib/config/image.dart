@@ -31,4 +31,17 @@ class KelolaImage{
 
   static const bannerStore = "${STORE_IMAGES_URL}/restaurant_image.png";
   static const noproduct = "${PUBLIC_IMAGES_URL}/noproduct.png";
+
+  static List<String> imagePromoList = [
+    '$PROMO_IMAGES_URL/1.png',
+    '$PROMO_IMAGES_URL/2.png',
+    '$PROMO_IMAGES_URL/3.png',
+    '$PROMO_IMAGES_URL/4.png',
+  ];
+
+  // void imageList(){
+  //   for(int i=0; i<14; i++){
+  //       imagePromoList.add('$PROMO_IMAGES_URL/${i+1}.png');
+  //   }
+  // }
 }

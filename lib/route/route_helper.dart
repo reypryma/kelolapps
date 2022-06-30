@@ -3,10 +3,12 @@ import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:kelolapps/data/model/productmodel/product_model.dart';
 import 'package:kelolapps/view/screens/CreateCashTransactionScreen.dart';
 import 'package:kelolapps/view/screens/LoginScreens.dart';
 import 'package:kelolapps/view/screens/RegisterScreens.dart';
 import 'package:kelolapps/view/screens/StoreRegisterWalkthroughScreen.dart';
+import 'package:kelolapps/view/screens/digital_shop/DigitalProductDetailScreen.dart';
 import 'package:kelolapps/view/screens/digital_shop/DigitalShopHomeScreen2.dart';
 import 'package:kelolapps/view/screens/digital_shop/DigitalShopInfoScreen.dart';
 import 'package:kelolapps/view/screens/digital_shop/DigitalShopPromoScreen.dart';
@@ -86,11 +88,25 @@ class RouteHelper {
   static const String viewPromoStoreInfo = '/view-promo';
   static  String getViewDigitalStorePromo = '$viewPromoStoreInfo';
 
+  static const String productDetails = '/product-details';
+  static  String getProductDetailsRoute = '$productDetails';
+
+  // static String getProductDetailsRoute(ProductModel product) {
+  //   // List<int> _encoded = utf8.encode(jsonEncode(product.toJson()));
+  //   // String _data = base64Encode(_encoded);
+  //   // return '$productDetails?data=$_data';
+  //   return '$productDetails';
+  // }
+
   static List<GetPage> routes = [
     //Digital Store
     GetPage(name: digitalStore, page: ()=> DigitalStoreHomeScreen()),
     GetPage(name: viewDigitalStoreInfo, page: ()=> DigitalShopInfoScreen()),
     GetPage(name: viewPromoStoreInfo, page: ()=> DigitalShopPromoScreen()),
+    GetPage(name: productDetails, page: (){
+      DigitalProductDetailScreen _productData = Get.arguments;
+      return _productData;
+    }) ,
 
     // GetPage(name: initial, page: () => DashboardScreen(pageIndex: 0)),
     GetPage(name: splash, page: () => const SplashScreenPage()),
