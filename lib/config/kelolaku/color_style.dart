@@ -40,6 +40,8 @@ class KelolakuGlobalColor {
   static const light = Color(0xFF6D95BD);
   static const light60 = Color(0xFFF3F6F9);
   static const light70 = Color(0xFFFFFFFF);
+  static const lightSmoke = Color(0xFFFFFDFD);
+  static const lightBorderInput = Color(0xFFD8E0F0);
 
 // 04 Red
   static const red10 = Color(0xFFFFF4F5);

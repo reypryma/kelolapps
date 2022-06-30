@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kelolapps/config/kelolaku/color_style.dart';
 
 ThemeData lightKelolaku = ThemeData(
@@ -13,4 +14,9 @@ ThemeData lightKelolaku = ThemeData(
   cardColor: Colors.white,
   colorScheme: const ColorScheme.light(primary: KelolakuGlobalColor.colorPrimaryLogo, secondary: KelolakuGlobalColor.ocean),
   textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(primary: KelolakuGlobalColor().t3White)),
+  appBarTheme: AppBarTheme(
+    color: KelolakuGlobalColor.light70,
+    iconTheme: IconThemeData(color: KelolakuGlobalColor.dark),
+    systemOverlayStyle: SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark),
+  ),
 );
